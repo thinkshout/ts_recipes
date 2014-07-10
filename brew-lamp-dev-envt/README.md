@@ -53,6 +53,7 @@ LoadModule php5_module    /usr/local/opt/php55/libexec/apache2/libphp5.so
 #### Composer
 ```bash
 brew install composer
+```
 
 #### Xdebug
 ```bash
