@@ -124,6 +124,10 @@ May complain about concurrent connections. Add a .cnf file at `/usr/local/etc/my
 max_connections=10
 ```
 
+### Switching PHP versions
+
+See: https://github.com/Homebrew/homebrew-php#installing-multiple-versions
+
 ## Additional reading
 * http://thinkshout.com/blog/2013/01/gabe/drupal-development-la-thinkshout-setting-your-environment/
 * http://fourkitchens.com/blog/2014/05/16/local-development-apache-vhosts-and-dnsmasq
