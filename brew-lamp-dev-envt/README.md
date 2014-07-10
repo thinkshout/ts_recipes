@@ -50,6 +50,14 @@ Find the line ```#LoadModule php5_module libexec/apache2/libphp5.so``` and make 
 LoadModule php5_module    /usr/local/opt/php55/libexec/apache2/libphp5.so
 ```
 
+##### Connect shell to homebrew-php
+
+Find the rc file for your shell (```~/.bashrc``` for bash, or ```~/.zshrc``` for zsh), find the last `export PATH="xxxxxxxx"` line, and add the following below.
+
+```bash
+export PATH="#{HOMEBREW_PREFIX}/bin:$PATH"
+```
+
 #### Composer
 ```bash
 brew install composer
