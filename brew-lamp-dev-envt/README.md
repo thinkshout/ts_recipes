@@ -83,7 +83,7 @@ sudo ln -s ~/Sites/httpd-vhosts.conf /etc/apache2/other
 #### Setup the logs directory, and set it’s permissions.
 
 ```bash
-mkdir ~/Sites/logs && chmod 0777 ~/Sites/logs
+mkdir ~/Sites/_logs && chmod 0777 ~/Sites/_logs
 ```
 
 #### Optionally Setup DNSMasq
