@@ -5,17 +5,26 @@
 ```bash
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
 ```
+
+Check your Homebrew installation with ```bash brew doctor``` before continuing.
+
 #### Git
 ```bash
 brew install git
 ```
+
+#### Set up homebrew taps
+
+At this point, we need to tell Homebrew where to look for formulae.
+
+```bash
+brew tap homebrew/dupes
+brew tap homebrew/homebrew-php
+```
+
 #### Drush
 ```bash
 brew install drush
-```
-#### Composer
-```bash
-brew install composer
 ```
 #### LAMP
 ```bash
@@ -25,6 +34,25 @@ brew install php55
 ```bash
 brew install mysql
 ```
+
+##### Connect Apache to homebrew-php
+
+Homebrew doesn't touch your Apache config files, so we'll need to point it to our new php install manually.
+
+```bash
+nano /etc/apache2.conf
+```
+
+Find the line ```#LoadModule php5_module libexec/apache2/libphp5.so``` and make sure that it's commented out.  Three lines below, insert the following:
+
+```
+# Homebrew LAMP stack customizations
+LoadModule php5_module    /usr/local/opt/php55/libexec/apache2/libphp5.so
+```
+
+#### Composer
+```bash
+brew install composer
 
 #### Xdebug
 ```bash
@@ -69,7 +97,7 @@ sudo apachectl restart
 ### Add entries to hosts file if _not_ using dynamic vhosts
 
 ```bash
-sudo nano /private/etc/hosts
+sudo nano /etc/hosts
 ```
 Add the following line:
 
