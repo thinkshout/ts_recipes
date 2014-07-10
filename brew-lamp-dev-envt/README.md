@@ -40,7 +40,7 @@ brew install mysql
 Homebrew doesn't touch your Apache config files, so we'll need to point it to our new php install manually.
 
 ```bash
-nano /etc/apache2.conf
+nano /etc/apache2/httpd.conf
 ```
 
 Find the line ```#LoadModule php5_module libexec/apache2/libphp5.so``` and make sure that it's commented out.  Three lines below, insert the following:
