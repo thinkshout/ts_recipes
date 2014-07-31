@@ -44,3 +44,20 @@ if (defined('PANTHEON_ENVIRONMENT')) {
   // Use Redis for Drupal locks (semaphore).
   $conf['lock_inc'] = 'profiles/PROFILE/modules/contrib/redis/redis.lock.inc';
 }
+
+// Simple redirects, for 404s.
+$redirects = array(
+  'old-1' => 'directory',
+  'old-2.asp' => 'directory',
+  'old-3.cfm' => 'home',
+  'old-4' => '',
+);
+if (in_array($_GET['q'], array_keys($redirects))) {
+  header('HTTP/1.0 301 Moved Permanently');
+  header('Location: /' . $redirects[$_GET['q']]);
+  exit();
+}
+
+// Handle any other 404s and prevent logging in watchdog..
+// Paths are controlled by $conf['404_fast_paths'].
+drupal_fast_404();
