@@ -39,3 +39,24 @@ Confirm that that page loads. Quit by using CTRL-C in terminal.
     - `bin/behat features/contact_form.feature` (tests the one feature)
     - `bin/behat features` (runs all tests in the features directory)
     - `bin/behat` (runs all tests that behat can find.)
+
+### Tips and further reading.
+- `bin/behat -di` to see all availble definitions (statements, assertions, etc).
+- `bin/behat --help` for all available commands and options.
+- Use 'follow' for links, and 'press' for buttons.
+- http://behat.org/
+- http://docs.behat.org/quick_intro.html
+- Writing features:
+  - Tests are case sensitive.
+  - http://docs.behat.org/cookbook/behat_and_mink.html#writing-your-first-web-feature
+  - http://docs.behat.org/en/v3.0/guides/1.gherkin.html
+- Adding custom definitions: http://docs.behat.org/cookbook/behat_and_mink.html#defining-our-own-featurecontext
+  - `bin/behat --init` to set up some placeholder directories and scripts.
+  - Then add `use Behat\MinkExtension\Context\MinkContext;` and extend MinkContext instead of BehatContext.
+- http://mink.behat.org/ (Including http://mink.behat.org/#different-browsers-drivers)
+- http://docs.behat.org/en/v3.0/ (Lots of good stuff in here.)
+- For selenium and webdriver: https://github.com/facebook/php-webdriver/
+- A good starting point: http://drupalwatchdog.com/volume-2/issue-2/behat-and-mink
+
+### Examples
+- http://cgit.drupalcode.org/panopoly_test/tree/tests
