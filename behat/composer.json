@@ -1,0 +1,15 @@
+{
+  "require": {
+    "behat/behat": "2.4.*@stable",
+    "behat/mink-extension": "*",
+    "behat/mink-goutte-driver": "*",
+    "behat/mink-sahi-driver": "*",
+    "behat/mink-zombie-driver": "*",
+    "behat/mink-selenium2-driver": "*",
+    "facebook/webdriver": "dev-master"
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "bin-dir": "bin/"
+  }
+}
