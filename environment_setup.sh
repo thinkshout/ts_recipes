@@ -75,6 +75,12 @@ echo $'\n'
 echo "Installing dev tools via Homebrew"
 echo $'\n'
 
+# LAMP
+
+# TODO: Make PHP version optional (PHP 5.3 / PHP 5.4 at least)
+brew install php55
+brew install mysql
+
 # Drush
 
 brew install drush
@@ -82,12 +88,6 @@ brew install drush
 # Composer
 
 brew install composer
-
-# LAMP
-
-# TODO: Make PHP version optional (PHP 5.3 / PHP 5.4 at least)
-brew install php55
-brew install mysql
 
 # TODO: Set up mysql to autostart
 # TODO: Configure mysql for concurrent connections
