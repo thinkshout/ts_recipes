@@ -74,6 +74,10 @@ echo $'\n'
 echo "Installing dev tools via Homebrew"
 echo $'\n'
 
+# wget
+
+brew install wget
+
 # LAMP
 
 # TODO: Make PHP version optional (PHP 5.3 / PHP 5.4 at least)
