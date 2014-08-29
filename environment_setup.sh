@@ -69,15 +69,6 @@ echo $'\n'
 echo "Installing dev tools via Homebrew"
 echo $'\n'
 
-# Git
-
-brew install git
-
-echo $'\n'
-echo "Git must be configured before use:"
-echo "https://help.github.com/articles/set-up-git"
-echo $'\n'
-
 # Drush
 
 brew install drush
