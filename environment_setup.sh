@@ -39,6 +39,14 @@ echo $'\n'
 
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
+brew_result=`brew doctor`
+
+if [ "$brew_result" != "Your system is ready to brew." ]; then
+  echo "Homebrew was not successfully installed. See message:"
+  echo "$brew_result"
+  exit 1;
+fi
+
 brew tap homebrew/dupes
 brew tap homebrew/homebrew-php
 
@@ -123,3 +131,5 @@ sudo apachectl restart
 echo $'\n'
 echo "Dev environment setup complete"
 echo $'\n'
+
+exit
