@@ -6,20 +6,8 @@ set -e
 # Work-in-progress.
 #
 
-confirmvhosts () {
-  read -r -p "Download example httpd-vhosts.conf file? [y/n]" response
-  case $response in
-    [yY])
-      true
-      ;;
-    *)
-      false
-      ;;
-  esac
-}
-
-confirmhosts () {
-  read -r -p "Create example item in hosts file? [y/n]" response
+confirmupdate () {
+  read -r -p "$1 [y/n]" response
   case $response in
     [yY])
       true
@@ -106,7 +94,7 @@ brew install drupal-code-sniffer
 
 # Apache vhosts
 
-if confirmvhosts; then
+if confirmupdate "Download example httpd-vhosts.conf file?"; then
   wget https://github.com/thinkshout/ts_recipes/blob/master/brew-lamp-dev-envt/httpd-vhosts.conf
   mv httpd-vhosts.conf ~/Sites/
   sudo mv /private/etc/apache2/extra/httpd-vhosts.conf /private/etc/apache2/extra/httpd-vhosts.conf.bak
@@ -119,8 +107,8 @@ fi
 
 # Hosts
 
-if confirmhosts; then
-  sudo echo '127.0.0.1 site.local' >> /private/etc/hosts
+if confirmupdate "Create example item in hosts file?"; then
+  sudo echo "127.0.0.1 site.local" >> /private/etc/hosts
 fi
 
 # Restart Apache
