@@ -50,7 +50,7 @@ fi
 brew tap homebrew/dupes
 brew tap homebrew/homebrew-php
 
-path_export = 'export PATH="#{HOMEBREW_PREFIX}/bin:$PATH"'
+path_export='export PATH="#{HOMEBREW_PREFIX}/bin:$PATH"'
 
 echo "Which shell?"
 echo "1) Bash"
@@ -60,11 +60,11 @@ read -r -p "" shell
 case $shell in
   [1])
     echo "Updated ~/.bashrc"
-    echo $path_export >> ~/.bashrc
+    echo "$path_export" >> ~/.bashrc
     ;;
   [2])
     echo "Updated ~/.zshrc"
-    echo $path_export >> ~/.zshrc
+    echo "$path_export" >> ~/.zshrc
 	;;
   *)
   echo "Add the following to your shell profile:"
