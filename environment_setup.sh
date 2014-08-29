@@ -42,8 +42,6 @@ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 brew tap homebrew/dupes
 brew tap homebrew/homebrew-php
 
-# TODO: Account for shells that aren't bash
-
 path_export = 'export PATH="#{HOMEBREW_PREFIX}/bin:$PATH"'
 
 echo "Which shell?"
@@ -79,7 +77,7 @@ brew install composer
 
 # LAMP
 
-# TODO: PHP 5.3 / PHP 5.4
+# TODO: Make PHP version optional (PHP 5.3 / PHP 5.4 at least)
 brew install php55
 brew install mysql
 
