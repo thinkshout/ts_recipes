@@ -4,7 +4,6 @@ set -e
 #
 # Sets up the standard ThinkShout development environment.
 # Work-in-progress.
-# TODO: Update existing dev environment.
 #
 
 confirmvhosts () {
