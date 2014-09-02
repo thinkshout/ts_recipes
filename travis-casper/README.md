@@ -4,7 +4,8 @@
   - latest `brew install phantomjs`
   - Earlier versions are also available in homebrew
   - Home page http://phantomjs.org/
-- casper `brew install casperjs --devel`
+- casper
+  - latest `brew install casperjs --devel`
   - "Devel" is required. It loads Casper 1.1, which is the earliest version to include casper.test.
   - Installation http://docs.casperjs.org/en/latest/installation.html
   - Usage http://docs.casperjs.org/en/latest/quickstart.html
