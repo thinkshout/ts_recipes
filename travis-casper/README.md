@@ -13,6 +13,7 @@
   - Home page http://casperjs.org/
 
 ## On Travis
+  - Example on thinkshout.com. https://github.com/thinkshout/thinkshout/pull/118/files
   - Example https://github.com/emberjs/ember.js/blob/master/.travis.yml
   - Docs http://docs.travis-ci.com/user/build-configuration/
   - Intro to travis + headless testing http://docs.travis-ci.com/user/gui-and-headless-browsers/
