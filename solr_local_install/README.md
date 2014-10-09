@@ -2,6 +2,8 @@
 ```
 brew install solr
 ```
+This will install the latest solr release, but Pantheon only supports solr 3.5.0. Luckily there's a brew ```solr36``` formula that works although you'll have to tinker a bit with the following instructions.
+
 If you get an error like...
 > curl: (22) The requested URL returned error: 404
 Error: Failed to download resource "solr"
@@ -41,7 +43,7 @@ Make a copy of the provided example dir
 cp -r example drupal
 cd drupal
 ```
-Copy the ```conf``` directory from the example collection into the ```solr``` dir and cd there as this is where the configuration files we want to modify are
+Copy the ```conf``` directory from the example collection into the ```solr``` dir and cd there as this is where the configuration files we want to modify are. Skip this step if you're using solr36.
 ```
 cp -r solr/collection1/conf ./solr
 cd solr/conf
@@ -59,31 +61,29 @@ Head back to the ```drupal``` dir that is a copy of ```example```
 ```
 cd ../../
 ```
-#### Enable multicore server
-To use solr as a multicore server, we will need to copy the ```solr.xml``` file configured for multicore support to the default dir.
-```
-cp multicore/solr.xml solr/
-```
-#### Create a core for each site
-The step below should be repeated for each search core (of which you'll likely want one per site). Every core instance should have it’s own dir (e.g. site1, site2, www_whatever_com) and needs a copy the complete solr/conf dir in its root.
-```
-mkdir solr/site1
-cp -r solr/conf solr/site1/
-```
-Once you've created a directory for each site you'll need to edit the solr.xml file because solr needs to know about every search core you created above.
+#### Enable multicore server (for multiple local sites)
+You'll need a solr core for each site you wish to index locally. To create these cores, edit the solr.xml file...
 ```
 subl solr/solr.xml
 ```
 Remove everything from the file and replace it with the codeblock below.
 
-You will need to create a core element for every search core dir you created above. Both element attributes (name and instanceDir) should be the actual dir name.
+You will need to create a core element for every search core you wish to create. Both element attributes (name and instanceDir) should be the actual dir name.
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
   <solr persistent="false">
     <cores adminPath="/admin/cores">
       <core name="site1" instanceDir="site1" />
+      <core name="site2" instanceDir="site2" />
     </cores>
   </solr>
+```
+#### Create a core directory for each site
+The step below should be repeated for each search core. Every core instance should have it’s own dir (e.g. site1, site2, www_whatever_com) and needs a copy the complete solr/conf dir in its root.
+```
+mkdir solr/site1
+cp -r solr/conf solr/site1/
+cp -r solr/conf solr/site2/
 ```
 
 ## Running the server
