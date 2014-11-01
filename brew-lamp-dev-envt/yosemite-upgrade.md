@@ -3,6 +3,7 @@ I ran into 3 gotchas after upgrading.
 ## XCode
 
 First, after upgrading to Yosemite, do the following:
+
 1. Upgrade XCode
 2. Upgrade XCodeCLT
 3. xcode-select --install
