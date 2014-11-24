@@ -31,4 +31,29 @@ Enable the following modules on uncommenting them"
 And, of course, add your homebrew PHP module:
 `LoadModule php5_module    /usr/local/opt/php55/libexec/apache2/libphp5.so`
 
+In your Apache vhosts config file, you should have something like the following. Apache 2.4 [handles access control differently](http://httpd.apache.org/docs/2.4/upgrading.html) to 2.2.
+
+```
+<Directory "/Users/user/Sites/">
+    Options Indexes MultiViews
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+    Require all granted
+</Directory>
+```
+
+Replace these lines:
+
+```
+Order allow,deny
+Allow from all
+```
+
+With this:
+
+```
+Require all granted
+```
+
 That should do it. Restart apache, `sudo apachectl -k restart` and you're good to go.
