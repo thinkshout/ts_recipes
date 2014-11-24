@@ -1,12 +1,27 @@
 
 ## Install required packages via HomeBrew
 
-#### First, Homebrew
+#### First, ensure you have Xcode cli tools installed
 ```bash
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
+xcode-select -p
 ```
 
-Check your Homebrew installation with ```bash brew doctor``` before continuing.
+If it returns a path, move to the next step. If not, try:
+```bash
+xcode-select --install
+``` 
+
+Symlink the correct Xcode SDKs for your version of OSX to ```/usr/include``` (example for Mavericks):
+```bash
+sudo ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include /usr/include
+```
+
+#### Now, Homebrew
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Check your Homebrew installation with ```brew doctor``` before continuing.
 
 #### Git
 ```bash
@@ -43,7 +58,7 @@ Homebrew doesn't touch your Apache config files, so we'll need to point it to ou
 nano /etc/apache2/httpd.conf
 ```
 
-Find the line ```#LoadModule php5_module libexec/apache2/libphp5.so``` and make sure that it's commented out.  Three lines below, insert the following:
+Find the line ```#LoadModule php5_module libexec/apache2/libphp5.so``` and make sure that it's commented out.  Below it, insert the following:
 
 ```
 # Homebrew LAMP stack customizations
