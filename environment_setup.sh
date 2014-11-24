@@ -20,11 +20,21 @@ confirmupdate () {
 
 # Homebrew
 
-echo $'\n'
-echo "Installing Homebrew"
-echo $'\n'
+# Check Homebrew is installed.
+brew_installed=`which brew`
+if [ "$brew_installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Homebrew."
+  echo $'\n'
 
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+  echo $'\n'
+  echo "Homebrew is already installed."
+  echo $'\n'
+
+  brew update
+fi
 
 brew_result=`brew doctor`
 
