@@ -39,7 +39,6 @@ In your Apache vhosts config file, you should have something like the following.
     AllowOverride All
     Order allow,deny
     Allow from all
-    Require all granted
 </Directory>
 ```
 
