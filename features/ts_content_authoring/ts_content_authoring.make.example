@@ -1,0 +1,18 @@
+;----------------------------------------
+; Example makefile for content authoring.
+;----------------------------------------
+api = 2
+core = 7.x
+
+; ckeditor
+;projects[ckeditor][version] = ""
+projects[ckeditor][subdir] = "contrib"
+
+;---------
+; Optional
+;---------
+
+; better_formats
+; Enables setting default and allowed text formats by role, and per field.
+;projects[better_formats][version] = ""
+projects[better_formats][subdir] = "contrib"
