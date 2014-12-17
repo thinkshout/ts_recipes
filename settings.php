@@ -19,7 +19,17 @@ else {
   $conf['salesforce_endpoint'] = 'https://test.salesforce.com';
 }
 
+// Everything except live instance on pantheon.
+if (!isset($_SERVER['PANTHEON_ENVIRONMENT']) || $_SERVER['PANTHEON_ENVIRONMENT'] !== 'live') {
+  // Disable the connection to Mandrill to prevent any emails from being sent.
+  $conf['mandrill_api_key'] = '';
+}
 
+// Only on a live pantheon environment.
+if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && $_SERVER['PANTHEON_ENVIRONMENT'] == 'live') {
+  // Set the real mandrill key.
+  $conf['mandrill_api_key'] = 'REAL_KEY_HERE';
+}
 
 // Prevent XMLSiteMap generation and submission
 if ((isset($_SERVER['PANTHEON_ENVIRONMENT']) && $_SERVER['PANTHEON_ENVIRONMENT'] !== 'live')
