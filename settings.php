@@ -1,13 +1,13 @@
 <?php
 
 // Prevent connection to the Production SF instance if not on the Production Pantheon server.
-if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && $_SERVER['PANTHEON_ENVIRONMENT'] === 'live') {
+if (defined('PANTHEON_ENVIRONMENT') && PANTHEON_ENVIRONMENT === 'live') {
   $conf['salesforce_instance_url'] = 'INSTANCE_URL';
   $conf['salesforce_consumer_key'] = 'CONSUMER_KEY';
   $conf['salesforce_consumer_secret'] = 'CONSUMER_SECRET';
   $conf['salesforce_endpoint'] = 'https://login.salesforce.com';
 }
-elseif (isset($_SERVER['PANTHEON_ENVIRONMENT']) && $_SERVER['PANTHEON_ENVIRONMENT'] === 'test') {
+elseif (defined('PANTHEON_ENVIRONMENT') && PANTHEON_ENVIRONMENT === 'test') {
   $conf['salesforce_instance_url'] = 'SANDBOX_INSTANCE_URL';
   $conf['salesforce_consumer_key'] = 'CONSUMER_KEY_SANDBOX';
   $conf['salesforce_consumer_secret'] = 'CONSUMER_SECRET_SANDBOX';
@@ -20,20 +20,20 @@ else {
 }
 
 // Everything except live instance on pantheon.
-if (!isset($_SERVER['PANTHEON_ENVIRONMENT']) || $_SERVER['PANTHEON_ENVIRONMENT'] !== 'live') {
+if (!defined('PANTHEON_ENVIRONMENT') || PANTHEON_ENVIRONMENT !== 'live') {
   // Disable the connection to Mandrill to prevent any emails from being sent.
   $conf['mandrill_api_key'] = '';
 }
 
 // Only on a live pantheon environment.
-if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && $_SERVER['PANTHEON_ENVIRONMENT'] == 'live') {
+if (defined('PANTHEON_ENVIRONMENT') && PANTHEON_ENVIRONMENT == 'live') {
   // Set the real mandrill key.
   $conf['mandrill_api_key'] = 'REAL_KEY_HERE';
 }
 
 // Prevent XMLSiteMap generation and submission
-if ((isset($_SERVER['PANTHEON_ENVIRONMENT']) && $_SERVER['PANTHEON_ENVIRONMENT'] !== 'live')
-  || !isset($_SERVER['PANTHEON_ENVIRONMENT'])){
+if ((defined('PANTHEON_ENVIRONMENT') && PANTHEON_ENVIRONMENT !== 'live')
+  || !defined('PANTHEON_ENVIRONMENT')){
   $conf['xmlsitemap_engines_engines'] = array();
   $conf['xmlsitemap_regenerate_needed'] = FALSE;
 }
