@@ -1,7 +1,7 @@
 Google Configuration for Hybridauth
 =======
 
-You should tell the client to create or provide the address of a google account so they can be added to the app once you create it.
+You should tell the client to create or provide the address of a google account so they can be added to the app once you create it. Also, ask them for a 120x120 image to use as the logo when the confirmation screen pops up.
 
 Log in to your TS google account and go to https://console.developers.google.com
 
@@ -14,7 +14,7 @@ Go to Apis & Auth -> APIs, and enable "Contacts API" and "Google+ API".
 Go to Apis & Auth -> Credentials. Click "Edit Settings" and add all your site domains, including any test or dev sites, and your local ngrok aliases, under "Javascript Origins". Include http & https URLs as needed. Under Redirect URIs, do the same but include the custom menu callback and query parameter used by hybridauth. For example:
 https://www.thinkshout.com/hybridauth/endpoint?hauth.done=Google
 
-Go to the "Consent Screen" tab and complete all the logical stuff.
+Go to the "Consent Screen" tab and complete all the logical stuff: this is where you want to upload the image provided by the client.
 
 Now, go to the hybridauth configuration on your site and add the appropriate authentication configuration. (admin/config/people/hybridauth/provider/Google)
 

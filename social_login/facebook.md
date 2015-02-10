@@ -1,6 +1,8 @@
 Facebook Configuration for Hybridauth
 =======
 
+Ask the client for an exactly 1024x1024 image, and a 16x16, to attach to the app for use in the interface that will show up for end users.
+
 You will need a Facebook account.
 
 Login to Facebook and go to https://developers.facebook.com/
@@ -15,7 +17,7 @@ Make sure to put the Top Level Domain for the site into "App Domains". (For deve
 
 Configure the site URL.
 
-Under "App Details" you may want to configure a logo or other business.
+Under "App Details" you may want to configure a logo or other business: this is where those two images will come in handy.
 
 Add other developers, and the client, under "Roles"
 
