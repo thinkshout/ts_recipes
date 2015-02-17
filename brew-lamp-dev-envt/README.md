@@ -136,8 +136,9 @@ May complain about concurrent connections. Add a .cnf file at `/usr/local/etc/my
 
 ```
 [mysqld]
-max_connections=10
+max_connections=151
 ```
+See: http://dev.mysql.com/doc/refman/5.5/en/too-many-connections.html
 
 ### Switching PHP versions
 
