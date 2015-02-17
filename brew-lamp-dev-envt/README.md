@@ -28,6 +28,9 @@ Check your Homebrew installation with ```brew doctor``` before continuing.
 brew install git
 ```
 
+### Set up SSH keys
+https://help.github.com/articles/generating-ssh-keys/
+
 #### Set up homebrew taps
 
 At this point, we need to tell Homebrew where to look for formulae.
@@ -56,6 +59,11 @@ Homebrew doesn't touch your Apache config files, so we'll need to point it to ou
 
 ```bash
 nano /etc/apache2/httpd.conf
+``` 
+
+Uncomment the following line:
+```bash
+LoadModule vhost_alias_module libexec/apache2/mod_vhost_alias.so
 ```
 
 Find the line ```#LoadModule php5_module libexec/apache2/libphp5.so``` and make sure that it's commented out.  Below it, insert the following:
@@ -81,6 +89,19 @@ brew install composer
 #### Xdebug
 ```bash
 brew install php55-xdebug
+```
+
+edit `/usr/local/etc/php/5.5/php.ini` by inserting this at the bottom:
+```bash
+[xdebug]
+zend_extension="xdebug.so"
+
+xdebug.default_enable=1
+xdebug.remote_enable=1
+xdebug.remote_handler=dbgp
+xdebug.remote_host=localhost
+xdebug.remote_port=9000
+xdebug.remote_autostart=1
 ```
 
 #### Drupal Code Sniffer
