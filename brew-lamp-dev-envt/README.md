@@ -44,6 +44,13 @@ brew tap homebrew/homebrew-php
 ```bash
 brew install drush
 ```
+
+### Drush 7
+```bash
+brew install --HEAD drush
+brew switch drush HEAD
+```
+
 #### LAMP
 ```bash
 brew install php55
