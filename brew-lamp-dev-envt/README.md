@@ -45,7 +45,7 @@ brew tap homebrew/homebrew-php
 brew install drush
 ```
 
-### Drush 7
+##### Drush 7
 ```bash
 brew install --HEAD drush
 brew switch drush HEAD
