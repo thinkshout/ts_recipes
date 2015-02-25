@@ -1,0 +1,34 @@
+<?php
+/**
+ * @file
+ * Code for the Families USA Beans Header Alert feature.
+ */
+
+include_once 'families_usa_beans_header_alert.features.inc';
+
+/**
+ * Implements hook_bean_types_api_info().
+ */
+function families_usa_beans_header_alert_bean_types_api_info() {
+  return array('api' => 4);
+}
+
+/**
+ * Implements hook_bean_types().
+ */
+function families_usa_beans_header_alert_bean_types() {
+  $plugins = array();
+  $plugins['header_alert'] = array(
+    'label' => t('Header Alert'),
+    'description' => t('Will show at the top of any page the first time a user visits the site.'),
+    'handler' => array(
+      'class' => 'FamiliesUsaHeaderAlert',
+      'parent' => 'bean',
+      'path' => drupal_get_path('module', 'families_usa_beans_header_alert') . '/plugins/bean',
+      'file' => 'fusa_header_alert.inc',
+    ),
+  );
+  return $plugins;
+}
+
+// Adding "close" button in families_usa_beans_overlay_alert.module

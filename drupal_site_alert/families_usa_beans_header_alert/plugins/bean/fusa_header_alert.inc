@@ -1,10 +1,10 @@
 <?php
 /**
  * @file
- * Displays a Header Pop-up bean.
+ * Displays a Header Alert bean.
  */
 
-class FamiliesUsaHeaderPopUp extends BeanPlugin {
+class FamiliesUsaHeaderAlert extends BeanPlugin {
 
   /**
    * Displays the bean.
@@ -16,14 +16,14 @@ class FamiliesUsaHeaderPopUp extends BeanPlugin {
 
     // Attach custom js to conditionally show bean to only visitors who have not seen it.
     $content['#attached']['library'][] = array('system', 'jquery.cookie');
-    $path = drupal_get_path('module', 'families_usa_beans_header_pop_up');
-    $content['#attached']['js'][] = $path . '/js/fusa_header_pop_up.js';
+    $path = drupal_get_path('module', 'families_usa_beans_header_alert');
+    $content['#attached']['js'][] = $path . '/js/fusa_header_alert.js';
 
 //    $entity_wrapper = entity_metadata_wrapper('bean', $bean);
-//    $cooldown_hours = $entity_wrapper->field_pop_up_cooldown_hours->value();
+//    $cooldown_hours = $entity_wrapper->field_alert_cooldown_hours->value();
 
-    // Display Front Page Pop Up bean.
-//    $pop_up_settings = array(
+    // Display Front Page Alert bean.
+//    $alert_settings = array(
 //      'enabled' => true,
 //      'hours' => $cooldown_hours,
 //      'hours' => 1,
@@ -31,11 +31,11 @@ class FamiliesUsaHeaderPopUp extends BeanPlugin {
 
     // Don't display the bean if this isn't the front page or
     // no bean instances are enabled.
-//    if (!drupal_is_front_page() || (!kidneys_get_front_page_pop_up_bean())) {
-//      $pop_up_settings['enabled'] = false;
+//    if (!drupal_is_front_page() || (!kidneys_get_front_page_alert_bean())) {
+//      $alert_settings['enabled'] = false;
 //    }
 
-//    drupal_add_js(array('pop_up_settings' => $pop_up_settings), 'setting');
+//    drupal_add_js(array('alert_settings' => $alert_settings), 'setting');
 
     return $content;
   }

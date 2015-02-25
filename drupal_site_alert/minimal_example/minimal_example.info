@@ -1,0 +1,6 @@
+name = Minimal Example
+core = 7.x
+package = Features
+dependencies[] = bean_admin_ui
+dependencies[] = ctools
+features[bean_type][] = header_alert

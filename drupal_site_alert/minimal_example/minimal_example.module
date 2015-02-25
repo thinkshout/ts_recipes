@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Code for the Minimal Example alert feature.
+ */
+
+/**
+ * Implements hook_bean_types_api_info().
+ */
+function minimal_example_bean_types_api_info() {
+  return array('api' => 4);
+}
+
+/**
+ * Implements hook_bean_types().
+ */
+function minimal_example_bean_types() {
+  $plugins = array();
+  $plugins['header_alert'] = array(
+    'label' => t('Header Alert'),
+    'description' => t('Will show at the top of any page the first time a user visits the site.'),
+    'handler' => array(
+      'class' => 'MinimalExampleAlert',
+      'parent' => 'bean',
+      'path' => drupal_get_path('module', 'minimal_example') . '/plugins/bean',
+      'file' => 'minimal_example.inc',
+    ),
+  );
+  return $plugins;
+}
+
+/**
+ * Implements template_preprocess_block().
+ *
+ * Override or insert variables into the block templates.
+ */
+function minimal_example_preprocess_block(&$variables) {
+  // For bean blocks only.
+  if ($variables['block']->module == 'bean' && isset($variables['elements']['bean'])) {
+    // Get the bean elements.
+    $beans = $variables['elements']['bean'];
+    // There is only 1 bean per block.
+    $children = element_children($beans);
+    $bean = $beans[reset($children)];
+    switch ($bean['#entity']->type) {
+      case 'header_alert':
+        // Add bean type as class to top-level bean container so entire bean can be hidden via JS.
+        // Necessary because "title" field is not hidden using class automatically applied to bean content.
+        $variables['classes_array'][] = $bean['#entity']->type;
+        break;
+    }
+  }
+}
