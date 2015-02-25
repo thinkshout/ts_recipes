@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Code for the Families USA Beans Header Pop-up feature.
+ */
+
+include_once 'families_usa_beans_header_pop_up.features.inc';
+
+/**
+ * Implements hook_bean_types_api_info().
+ */
+function families_usa_beans_header_pop_up_bean_types_api_info() {
+  return array('api' => 4);
+}
+
+/**
+ * Implements hook_bean_types().
+ */
+function families_usa_beans_header_pop_up_bean_types() {
+  $plugins = array();
+  $plugins['header_pop_up'] = array(
+    'label' => t('Header Pop-up'),
+    'description' => t('Will show at the top of any page the first time a user visits the site.'),
+    'handler' => array(
+      'class' => 'FamiliesUsaHeaderPopUp',
+      'parent' => 'bean',
+      'path' => drupal_get_path('module', 'families_usa_beans_header_pop_up') . '/plugins/bean',
+      'file' => 'fusa_header_pop_up.inc',
+    ),
+  );
+  return $plugins;
+}
