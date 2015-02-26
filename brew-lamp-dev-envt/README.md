@@ -109,6 +109,8 @@ xdebug.remote_handler=dbgp
 xdebug.remote_host=localhost
 xdebug.remote_port=9000
 xdebug.remote_autostart=1
+; Needed for Drupal 8
+xdebug.max_nesting_level = 250
 ```
 
 #### Drupal Code Sniffer
