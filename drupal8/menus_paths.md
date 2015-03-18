@@ -77,4 +77,19 @@ mailchimp.admin:
   base_route: mailchimp.admin
   title: 'Mailchimp'
 ```
+Now, to add another tab that points to a new route, just add these to the modulename.links.tasks.yml:
+```
+modulename.newroute:
+  route_name: modulename.newroute
+  base_route: modulename.routename
+  title: 'Next Tab label'
+```
+Example (from mailchimp_signup.links.task.yml):
+```
+mailchimp_signup.admin:
+  route_name: mailchimp_signup.admin
+  base_route: mailchimp.admin
+  title: 'Mailchimp Signup'
+  weight: 10
+```
 
