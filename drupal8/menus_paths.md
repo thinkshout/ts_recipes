@@ -11,7 +11,7 @@ In your module root, create a file called "modulename.routing.yml".
 
 Each route you want to create goes into this file in the following format. This one is a form style, so it has a "_form" line. There are other types of routes, but this is a pretty common one.
 
-`
+```
 modulename.routename:
   path: 'actual/path/to/load/this/thing'
   defaults:
@@ -19,9 +19,9 @@ modulename.routename:
     _title: 'Title'
   requirements:
     _permission: 'administer foobar'
-`
+```
 Example:
-`
+```
 mailchimp.admin:
   path: 'admin/config/services/mailchimp'
   defaults:
@@ -29,10 +29,10 @@ mailchimp.admin:
     _title: 'Mailchimp'
   requirements:
     _permission: 'administer mailchimp'
-`
+```
 
 Now, create a file called "NameOfClassForm.php" in the module directory under "src/Form/". Have a look at the Mailchimp d8 branch to check out how to organize this file. Basically, you extend the ConfigFormBase class with a class named "NameofPHPClassForm", and implement some functions including:
-`
+```
 public function getFormID() {
   return 'class_machinename_style_form_id_form';
 }
@@ -44,7 +44,7 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
   // do stuff, then:
   parent::submitForm($form, $form_state);
 }
-`
+```
 
 Once you have that stuff, you should be able to go to 'actual/path/to/load/this/thing' on your site and get your form.
 
@@ -61,5 +61,20 @@ modulename.link_id:
 
 Now, if you want to create a link under your own menu item, it would use "modulename.link_id" as the "parent:" (I think: it might be that you use "modulename.routename" -- I'll update when I figure it out). You just add these to the same file.
 
+## Adding tabs to menu structure
 
+If you have an existing item in the menu structure (from the previous section) and want to create some tabs on that item for different config pages, you need to add a file called "modulename.links.tasks.yml". Think of this as the "default local task" from D7 -- or just the default tab, here. It looks like so:
+```
+modulename.routename:
+  route_name: modulename.routename
+  base_route: modulename.routename
+  title: 'Tab label'
+```
+Example:
+```
+mailchimp.admin:
+  route_name: mailchimp.admin
+  base_route: mailchimp.admin
+  title: 'Mailchimp'
+```
 
