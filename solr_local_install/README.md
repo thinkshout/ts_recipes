@@ -1,8 +1,10 @@
+This will install the latest solr release, but Pantheon only supports solr 3.5.0. Luckily there's a brew ```solr36``` formula that works although you'll have to tinker a bit with the following instructions. Start by using ```brew install solr36``` to install the 3.6 version of Solr.
+
 ## Install required packages via Homebrew
+
 ```
 brew install solr
 ```
-This will install the latest solr release, but Pantheon only supports solr 3.5.0. Luckily there's a brew ```solr36``` formula that works although you'll have to tinker a bit with the following instructions.
 
 If you get an error like...
 > curl: (22) The requested URL returned error: 404
@@ -35,7 +37,7 @@ This module contains ```schema.xml``` and ```solrconfig.xml``` files we'll be co
 
 #### Modify the solr installation with Drupal config
 
-Go to where homebrew has installed Solr, ```change <VER.SI.ON>``` to the actual version number, in this example the version is 4.10.0.
+Go to where homebrew has installed Solr, change ```<VER.SI.ON>``` to the actual version number, in this example the version is 4.10.0.
 ```cd $(brew --prefix)/Cellar/solr/<VER.SI.ON>/libexec```
 
 Make a copy of the provided example dir
@@ -53,7 +55,7 @@ Make copies of the configuration files that will be overwritten
 cp schema.xml schema.xml.bak
 cp solrconfig.xml solrconfig.xml.bak
 ```
-Pull in new copies of configuration files from the ```search_api_solr``` module
+Pull in new copies of configuration files from the ```search_api_solr``` module. If using Solr 4.x use the 4.x conf files, otherwise use the 3.x conf files.
 ```
 cp search_api_solr/solr-conf/4.x/*.xml .
 ```
@@ -116,3 +118,6 @@ Once your server is up and running do the following to configure a search_api se
 	* solr port: 8983
 	* solr path: /solr/\<name\_of\_site\> (e.g. /solr/site1)
 5. Leave the Basic HTTP Authentication and Advanced sections blank, and save your settings.
+
+## Conflicts with Pantheon's pantheon_apachesolr module
+Once you enable the pantheon_apachesolr module it overrides any connection info for any solr server used. You will need to disable pantheon_apachesolr to have a local solr server work.
