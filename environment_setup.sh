@@ -17,8 +17,10 @@ confirmupdate () {
 xcode_path=`xcode-select -p`
 echo "Sets up the standard ThinkShout development environment."
 echo "Work-in-progress."
+echo $'\n'
 echo "Prereq: Must be running OSX 10.10 Yosemite"
 echo "Prereq: Xcode must be installed with Command Line Tools. (xcode-select path currently = $xcode_path)"
+echo $'\n'
 
 if confirmupdate "Would you like to proceed?"; then
   echo "Starting setup..."
@@ -92,7 +94,7 @@ launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 sudo launchctl unload /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
 
-brew install -v httpd22 --with-brewed-openssl
+brew install homebrew/apache/httpd22 --with-brewed-openssl
 
 [ ! -d ~/Sites ] && mkdir -pv ~/Sites
 
