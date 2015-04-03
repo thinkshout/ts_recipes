@@ -47,13 +47,9 @@ fi
 brew_result=`brew doctor`
 
 if [ "$brew_result" != "Your system is ready to brew." ]; then
-  echo "Homebrew is complaining:"
+  echo "Homebrew was not successfully installed. See message:"
   echo "$brew_result"
-  if confirmupdate "Do you want to continue anyway?"; then
-    echo "Continuing setup..."
-  else
-    exit
-  fi
+  exit 1;
 fi
 
 brew tap homebrew/dupes
