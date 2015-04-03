@@ -1,10 +1,6 @@
 #!/bin/bash
-set -e
 
-#
-# Sets up the standard ThinkShout development environment.
-# Work-in-progress.
-#
+#set -e
 
 confirmupdate () {
   read -r -p "$1 [y/n]" response
@@ -19,15 +15,10 @@ confirmupdate () {
 }
 
 xcode_path=`xcode-select -p`
-echo $'\n'
 echo "Sets up the standard ThinkShout development environment."
-echo $'\n'
 echo "Work-in-progress."
-echo $'\n'
 echo "Prereq: Must be running OSX 10.10 Yosemite"
-echo $'\n'
 echo "Prereq: Xcode must be installed with Command Line Tools. (xcode-select path currently = $xcode_path)"
-echo $'\n'
 
 if confirmupdate "Would you like to proceed?"; then
   echo "Starting setup..."
@@ -56,9 +47,13 @@ fi
 brew_result=`brew doctor`
 
 if [ "$brew_result" != "Your system is ready to brew." ]; then
-  echo "Homebrew was not successfully installed. See message:"
+  echo "Homebrew is complaining:"
   echo "$brew_result"
-  exit 1;
+  if confirmupdate "Do you want to continue anyway?"; then
+    echo "Continuing setup..."
+  else
+    exit
+  fi
 fi
 
 brew tap homebrew/dupes
