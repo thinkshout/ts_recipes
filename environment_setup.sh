@@ -15,12 +15,14 @@ confirmupdate () {
 }
 
 xcode_path=`xcode-select -p`
+echo ""
 echo "Sets up the standard ThinkShout development environment."
 echo "Work-in-progress."
-echo $'\n'
-echo "Prereq: Must be running OSX 10.10 Yosemite"
-echo "Prereq: Xcode must be installed with Command Line Tools. (xcode-select path currently = $xcode_path)"
-echo $'\n'
+echo ""
+echo "There's no UNDO for this script, so please double check the prereqs now:"
+echo "- Required: OSX 10.10 Yosemite"
+echo "- Required: Xcode with Command Line Tools (xcode-select --install)"
+echo ""
 
 if confirmupdate "Would you like to proceed?"; then
   echo "Starting setup..."
@@ -28,19 +30,16 @@ else
   exit
 fi
 
-# Homebrew
+echo $'\n'
+echo "Installing Homebrew."
+echo $'\n'
 
 # Check Homebrew is installed.
 brew_installed=`which brew`
 if [ "$brew_installed" == "" ] ; then
-  echo $'\n'
-  echo "Installing Homebrew."
-  echo $'\n'
-
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
-  echo $'\n'
-  echo "Homebrew is already installed."
+  echo "Updating Homebrew"
   echo $'\n'
 
   brew update
@@ -58,18 +57,20 @@ brew tap homebrew/dupes
 brew tap homebrew/homebrew-php
 
 echo $'\n'
-echo "Installing dev tools via Homebrew"
+echo "Installing git"
 echo $'\n'
-
-# git
 
 brew install git
 
-# wget
+echo $'\n'
+echo "Installing wget"
+echo $'\n'
 
 brew install wget
 
-# MySQL
+echo $'\n'
+echo "Installing MySQL"
+echo $'\n'
 
 brew install mysql
 
@@ -88,9 +89,9 @@ sed -i '' 's/^#[[:space:]]*\(innodb_buffer_pool_size\)/\1/' $(brew --prefix)/etc
 
 ln -sfv $(brew --prefix mysql)/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
 
-launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-
-# Apache
+echo $'\n'
+echo "Installing Apache"
+echo $'\n'
 
 sudo launchctl unload /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
 
@@ -219,8 +220,6 @@ openssl req \
 
 ln -sfv $(brew --prefix httpd22)/homebrew.mxcl.httpd22.plist ~/Library/LaunchAgents
 
-launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.httpd22.plist
-
 sudo bash -c 'export TAB=$'"'"'\t'"'"'
 cat > /Library/LaunchDaemons/co.echo.httpdfwd.plist <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -243,9 +242,10 @@ ${TAB}<string>root</string>
 </plist>
 EOF'
 
-sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
+echo $'\n'
+echo "Installing PHP"
+echo $'\n'
 
-# PHP
 # TODO: Make PHP version optional (PHP 5.3 / PHP 5.4 at least)
 
 brew install php55 --homebrew-apxs --with-apache
@@ -268,7 +268,9 @@ touch $(brew --prefix php55)/lib/php/.lock && chmod 0644 $(brew --prefix php55)/
 
 /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.5/php.ini
 
-# Dnsmasq
+echo $'\n'
+echo "Installing Dnsmasq"
+echo $'\n'
 
 brew install dnsmasq
 
@@ -278,35 +280,42 @@ echo 'port=35353' >> $(brew --prefix)/etc/dnsmasq.conf
 
 ln -sfv $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist ~/Library/LaunchAgents
 
-launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.dnsmasq.plist
-
 sudo mkdir -v /etc/resolver
 sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
 sudo bash -c 'echo "port 35353" >> /etc/resolver/dev'
 
-# Drush
+echo $'\n'
+echo "Installing Drush"
+echo $'\n'
 
 brew install drush
 
-# Composer
+echo $'\n'
+echo "Installing Composer"
+echo $'\n'
 
 brew install composer
 
-# Xdebug
+echo $'\n'
+echo "Installing Xdebug"
+echo $'\n'
 
 brew install php55-xdebug
 
-# Drupal Code Sniffer
+echo $'\n'
+echo "Installing Drupal Code Sniffer"
+echo $'\n'
 
 brew install drupal-code-sniffer
 
-# Restart Apache
-
 echo $'\n'
-echo "Restarting Apache"
+echo "Starting services"
 echo $'\n'
 
-sudo apachectl restart
+launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.httpd22.plist
+sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
+launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.dnsmasq.plist
 
 echo $'\n'
 echo "Dev environment setup complete"
