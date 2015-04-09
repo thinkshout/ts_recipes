@@ -13,3 +13,9 @@ Configuration entities are intented to store site configuration data.
 * [Creating a configuration entity](https://www.drupal.org/node/1809494)
 
 Configuration entities are stored in the `config` database table.
+
+## Content Entities
+
+Content entities are basically intended to be used the same way as Drupal 7 entities.
+
+* [Creating a content entity](https://www.drupal.org/node/2192175)
