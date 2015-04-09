@@ -8,6 +8,7 @@
 
 Configuration entities are intented to store site configuration data.
 
+[Configuration API documentation](https://www.drupal.org/developing/api/8/configuration)
 [Configuration entities documentation](https://www.drupal.org/node/1818734)
 [Creating a configuration entity](https://www.drupal.org/node/1809494)
 
