@@ -8,6 +8,10 @@
 - PHP
 - Dnsmasq
 
+## Consider using the environment script
+
+https://github.com/thinkshout/ts_recipes/blob/master/environment_setup.sh
+
 ## Install required packages via HomeBrew
 
 Parts of this documentation yanked from
