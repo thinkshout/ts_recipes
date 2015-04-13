@@ -4,7 +4,7 @@ Many Drupal sites will get hundreds of 404s per day at the url `wp-login.php`. T
 
 ## A Solution
 
-The following snippet will redirect `wp-login.php` traffic to the base url with a 300 status. It does so before the Drupal bootstrap, so it is very cheap computationally and no watchdog message is logged. More sophisticated bots should recognize what a 300 status means, and take their nefarious business elsewhere, where their claws may find purchase.
+The following snippet will redirect `wp-login.php` traffic to the base url with a 301 status. It does so before the Drupal bootstrap, so it is very cheap computationally and no watchdog message is logged. More sophisticated bots should recognize what a 301 status means, and take their nefarious business elsewhere, where their claws may find purchase.
 
 ```php
 if ($_SERVER['REQUEST_URI'] === "/wp-login.php") {
