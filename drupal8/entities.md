@@ -19,3 +19,10 @@ Configuration entities are stored in the `config` database table.
 Content entities are basically intended to be used the same way as Drupal 7 entities.
 
 * [Creating a content entity](https://www.drupal.org/node/2192175)
+
+## View Builders
+
+Entities in Drupal 8 can be rendered using view builders.
+
+* [Entities are now rendered by a view builder](https://www.drupal.org/node/1819308)
+  * Note that the above example defines the entity's view_builder property in a "controllers" object, while ["controllers" is now "handlers"](https://www.drupal.org/node/2200867)
