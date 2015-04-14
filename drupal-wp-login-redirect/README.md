@@ -15,3 +15,7 @@ if ($_SERVER['REQUEST_URI'] === "/wp-login.php") {
 ```
 
 This should be placed in `settings.php`, *before* any other redirect logic (for example, Pantheon environment redirects, or HTTPS redirects). A safe place would be right after the `# drupal_fast_404();` comment.
+
+## Pantheon Environment Note
+
+Pantheon's environment may not have the same variables available in `settings.php` as your local environment, so you may need to define `$base_url` yourself.
