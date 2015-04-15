@@ -26,3 +26,7 @@ Standard field types are below. The ID should be used when defining a field as p
 |   TimestampItem       | timestamp        |                                            |
 |   UriItem             | uri              |                                            |
 |   UuidItem            | uuid             |                                            |
+
+## Field Info
+
+`field_info_fields()` is deprecated in Drupal 8. Use [\Drupal::entityManager()->getFieldMap()](https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Entity!EntityManager.php/function/EntityManager%3A%3AgetFieldMap/8)
