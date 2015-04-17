@@ -41,3 +41,15 @@ See [MailChimp Lists module for an example of a custom field type](https://githu
 
 * [FieldItemInterface::storageSettingsForm](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Field%21FieldItemInterface.php/function/FieldItemInterface%3A%3AstorageSettingsForm/8) replaces hook_field_settings_form
 * [FieldItemInterface::fieldSettingsForm](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Field%21FieldItemInterface.php/function/FieldItemInterface%3A%3AfieldSettingsForm/8) replaces hook_field_instance_settings_form
+
+#### Database Structure
+
+Drupal 7 `field_config` table
+
+* Field configuration now stored in `config` table
+* ID structure is field.storage.`$entity`.field_`$field_name`
+
+Drupal 7 field_config_instance table
+
+- Field instance configuration now in field-specific table
+- Table name structure is `$entity`_`$bundle`(?)_`$field_name`
