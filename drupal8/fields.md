@@ -51,5 +51,5 @@ Drupal 7 `field_config` table
 
 Drupal 7 `field_config_instance` table
 
-- Field instance configuration now in field-specific table
-- Table name structure is `$entity` _ `$bundle`(?) _ `$field_name`
+* Field instance configuration now stored in `config` table
+* ID structure is field . field . `$entity` . field _ `$field_name`
