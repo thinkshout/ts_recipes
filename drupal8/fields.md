@@ -49,7 +49,7 @@ Drupal 7 `field_config` table
 * Field configuration now stored in `config` table
 * ID structure is field . storage . `$entity` . field _ `$field_name`
 
-Drupal 7 field_config_instance table
+Drupal 7 `field_config_instance` table
 
 - Field instance configuration now in field-specific table
 - Table name structure is `$entity` _ `$bundle`(?) _ `$field_name`
