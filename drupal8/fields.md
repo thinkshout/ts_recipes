@@ -45,6 +45,8 @@ See [MailChimp Lists module for an example of a custom field type](https://githu
 * FieldItemInterface::storageSettingsForm will *not work* unless you implement [FieldItemInterface::defaultStorageSettings](https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Field!FieldItemInterface.php/function/FieldItemInterface%3A%3AdefaultStorageSettings/8)
 * FieldItemInterface::fieldSettingsForm will *not work* unless you implement [FieldItemInterface::defaultFieldSettings](https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Field!FieldItemInterface.php/function/FieldItemInterface%3A%3AdefaultFieldSettings/8)
 
+* hook_field_presave() has been replaced by [FieldItemInterface::preSave](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Field%21FieldItemInterface.php/function/FieldItemInterface%3A%3ApreSave/8)
+
 #### Database Structure
 
 Drupal 7 `field_config` table
