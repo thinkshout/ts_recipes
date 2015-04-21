@@ -2,7 +2,7 @@
 
 ## Collapsible Fieldsets
 
-`#collapsible` and `#collapsed` are no longer valid in Drupal 8.
+`#collapsible` and `#collapsed` are [no longer valid in Drupal 8](https://www.drupal.org/node/1852020).
 
 Instead, set `#type` to `details` and `#open` to `TRUE` or `FALSE`
 
