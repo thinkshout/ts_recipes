@@ -54,10 +54,15 @@ Your autocomplete route should point to a controller method that returns a JsonR
  *   A JSON response.
  */
 public function autocomplete($param) {
-  $data = array(
-    'var' => 1,
+  $data = array()
+
+  $data[] = array(
+    'value' => 'item_1',
+    'label' => 'Item One',
   );
 
   return new JsonResponse($data);
 }
 ```
+
+***Important:*** Make sure `'value'` is always a string. autocomplete.js calls .search() on that value when the select handler is triggered will break on non-string values.
