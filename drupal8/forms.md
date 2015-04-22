@@ -17,8 +17,47 @@ $form['advanced'] = array(
 ?>
 ```
 
-## Error messages
+## Error Messages
 
 `form_set_error` is deprecated in Drupal 8. Instead use:
 
 `$form_state->setErrorByName('field_name', t('Error message.');`
+
+## Autocomplete Fields
+
+`#autocomplete_path` is deprecated in Drupal 8. Instead use `#autocomplete_route_name`. Example:
+
+```php
+$form['autocomplete_field'] = array(
+  '#type' => 'textfield',
+  '#autocomplete_route_name' => 'your_module.autocomplete',
+  '#autocomplete_route_parameters' => array(
+    'param' => $value,
+  ),
+);
+```
+
+See: [Creating a Route](https://github.com/thinkshout/ts_recipes/blob/master/drupal8/menus_paths.md#creating-a-route)
+
+### Autocomplete Controller
+
+Your autocomplete route should point to a controller method that returns a JsonResponse object. Example:
+
+```php
+/**
+ * Autocomplete callback method.
+ *
+ * @param string $param
+ *   A parameter.
+ *
+ * @return \Symfony\Component\HttpFoundation\JsonResponse
+ *   A JSON response.
+ */
+public function autocomplete($param) {
+  $data = array(
+    'var' => 1,
+  );
+
+  return new JsonResponse($data);
+}
+```
