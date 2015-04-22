@@ -65,4 +65,4 @@ public function autocomplete($param) {
 }
 ```
 
-***Important:*** Make sure `'value'` is always a string. autocomplete.js calls .search() on that value when the select handler is triggered will break on non-string values.
+***Important:*** Make sure `'value'` is always a string. autocomplete.js calls .search() when the select handler is triggered and will break on non-string values.
