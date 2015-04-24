@@ -17,6 +17,49 @@ $form['advanced'] = array(
 ?>
 ```
 
+## Submit Buttons
+
+Submit buttons are no longer part of the form render array. Add or edit submit buttons by overriding [EntityForm::actions](https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Entity!EntityForm.php/function/EntityForm%3A%3Aactions/8)
+
+***Change the Submit Button Label***
+
+  ```php
+  class MyContentForm extends ContentEntityForm {
+
+    protected function actions(array $form, FormStateInterface $form_state) {
+      $actions = parent::actions($form, $form_state);
+
+      $actions['submit']['#value'] = t('Custom Submit Label');
+    }
+
+  }
+  ```
+
+***Add a Custom Submit Button***
+
+  ```php
+  class MyContentForm extends ContentEntityForm {
+
+    protected function actions(array $form, FormStateInterface $form_state) {
+      $actions = parent::actions($form, $form_state);
+
+      $actions['custom_submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Custom Submit Button'),
+        '#submit' => array('::submitForm', '::customSubmit'),
+      );
+    }
+
+    public function customSubmit(array $form, FormStateInterface $form_state) {
+      // Perform submit action.
+
+      // If you need to rebuild the form, do so here:
+      $form_state->setRebuild(TRUE);
+    }
+
+  }
+  ```
+
 ## Error Messages
 
 `form_set_error` is deprecated in Drupal 8. Instead use:
