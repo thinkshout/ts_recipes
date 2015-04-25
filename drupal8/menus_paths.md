@@ -93,3 +93,26 @@ mailchimp_signup.admin:
   weight: 10
 ```
 
+## Adding Static Page Arguments
+
+With `hook_menu()` it was possible to set static arguments that would be passed to a page.
+
+  ```php
+  'page arguments' => array('value_one', 'value_two'),
+  ```
+
+In Drupal 8, these are added to the `defaults` section of a route.
+
+  ```
+  example_module.page:
+    path: 'admin/config/example/page'
+  defaults:
+    _controller: '\Drupal\example_module\Controller\ExampleModuleController::page'
+    _title: 'Example Page'
+    arg_one: 'value_one'
+    arg_two: 'value_two'
+  ```
+
+  ```php
+  public function page($arg_one, $arg_two) {}
+  ```
