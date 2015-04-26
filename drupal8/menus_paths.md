@@ -116,3 +116,9 @@ In Drupal 8, these are added to the `defaults` section of a route.
   ```php
   public function page($arg_one, $arg_two) {}
   ```
+
+## Dynamic Routes
+
+Routes that need to be generated from user input can be generated dynamically.
+
+* [Providing dynamic routes](https://www.drupal.org/node/2122201)
