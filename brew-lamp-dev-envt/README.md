@@ -403,6 +403,10 @@ brew install drupal-code-sniffer
 
 ## Gotchas to keep in mind
 
+### Adjusting Open File Limits in Yosemite
+
+See: http://docs.basho.com/riak/latest/ops/tuning/open-files-limit/#Mac-OS-X
+
 ### MySql
 May complain about concurrent connections. Add a .cnf file at `/usr/local/etc/my.cnf` containing at least:
 
