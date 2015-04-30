@@ -26,3 +26,11 @@ Additionally, you should document your hook with a category, like so:
  */
 function hook_mymodule_hook($arg1, $arg2) {}
 ```
+
+And, naturally, at the end of your hooks you need to:
+
+```
+/**
+ * @} End of "addtogroup hooks".
+ */
+ ```
