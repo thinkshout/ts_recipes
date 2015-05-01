@@ -8,6 +8,10 @@
 - PHP
 - Dnsmasq
 
+## Consider using the environment script
+
+https://github.com/thinkshout/ts_recipes/blob/master/environment_setup.sh
+
 ## Install required packages via HomeBrew
 
 Parts of this documentation yanked from
@@ -398,6 +402,10 @@ brew install drupal-code-sniffer
 ```
 
 ## Gotchas to keep in mind
+
+### Adjusting Open File Limits in Yosemite
+
+See: http://docs.basho.com/riak/latest/ops/tuning/open-files-limit/#Mac-OS-X
 
 ### MySql
 May complain about concurrent connections. Add a .cnf file at `/usr/local/etc/my.cnf` containing at least:
