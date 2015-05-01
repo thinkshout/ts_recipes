@@ -121,3 +121,13 @@ Once your server is up and running do the following to configure a search_api se
 
 ## Conflicts with Pantheon's pantheon_apachesolr module
 Once you enable the pantheon_apachesolr module it overrides any connection info for any solr server used. You will need to disable pantheon_apachesolr to have a local solr server work.
+
+
+## Empty facets or search results showing up
+
+You may need to force clear your index. the Clear all indexed data button on the Search API index page only clears the items that the site knows about. This means we often end up with many items the site doesn't know about in the index. These curl commands will clear your index for a particular core. Replace ```<CORE>``` with your actual core name.
+
+```
+curl http://localhost:8983/solr/<CORE>/update --data '<delete><query>*:*</query></delete>' -H 'Content-type:text/xml; charset=utf-8'
+curl http://localhost:8983/solr/<CORE>/update --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
+```
