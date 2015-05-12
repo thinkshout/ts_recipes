@@ -45,9 +45,12 @@ Make a copy of the provided example dir
 cp -r example drupal
 cd drupal
 ```
-Copy the ```conf``` directory from the example collection into the ```solr``` dir and cd there as this is where the configuration files we want to modify are. Skip this step if you're using solr36.
+Copy the ```conf``` directory from the example collection into the ```solr``` dir. **Skip this step if you're using solr36**.
 ```
 cp -r solr/collection1/conf ./solr
+```
+cd into the solr configuration directory to modify the configuration files.
+```
 cd solr/conf
 ```
 Make copies of the configuration files that will be overwritten
