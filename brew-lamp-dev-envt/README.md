@@ -384,8 +384,7 @@ brew install php55-xdebug
 edit `/usr/local/etc/php/5.5/php.ini` by inserting this at the bottom:
 ```bash
 [xdebug]
-zend_extension="/usr/local/Cellar/php55-xdebug/2.3.2/xdebug.so"
-
+zend_extension="/usr/local/opt/php55-xdebug/xdebug.so"
 xdebug.default_enable=1
 xdebug.remote_enable=1
 xdebug.remote_handler=dbgp
