@@ -4,7 +4,7 @@ To rename an existing theme in place:
  - Rename the theme's .info file.
  - Update the site's .profile.
  - Do a full site search for themes/custom and update the theme name.
- - Do a full site search for 'old_theme_name' (with single quotes!)
+ - Do a full site search for 'old_theme_name' (with single quotes!), edit as appropriate.
  - Update all function names in the theme's template.php file.
  - Update paths in Google migration documents.
  - Commit changes - git should show a large number of rename themes/custom{old_theme => new_theme} messages.
