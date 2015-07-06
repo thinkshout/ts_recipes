@@ -248,7 +248,7 @@ echo $'\n'
 
 # TODO: Make PHP version optional (PHP 5.3 / PHP 5.4 at least)
 
-brew install php55 --homebrew-apxs --with-apache
+brew install php55 --with-homebrew-apxs --with-apache
 
 cat >> $(brew --prefix)/etc/apache2/2.2/httpd.conf <<EOF
 # Send PHP extensions to mod_php
