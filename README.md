@@ -3,7 +3,9 @@ recipes
 
 A repository for ThinkShout's coding recipes.
 
-'''environment_setup.sh'''
+environment_setup.sh
+====================
+
 Sets you up with a server environment.
 
 Save a copy to your home folder and run ./environment_setup.sh.
