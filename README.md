@@ -9,7 +9,11 @@ environment_setup.sh
 Sets you up with a server environment.
 
 Requirements:
+
 XCode
+
+XCode Command Line Tools
+
 Homebrew
 
 Save a copy to your home folder and run ./environment_setup.sh.
