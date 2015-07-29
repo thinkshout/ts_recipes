@@ -49,6 +49,7 @@ https://help.github.com/articles/generating-ssh-keys/
 ```bash
 brew tap homebrew/dupes
 brew tap homebrew/homebrew-php
+brew tap homebrew/services
 ```
 
 #### MySQL
