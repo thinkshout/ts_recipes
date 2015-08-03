@@ -309,6 +309,22 @@ echo $'\n'
 brew install php55-xdebug
 
 echo $'\n'
+echo "Adding Xdebug configuration to php.ini (php 5.5)"
+echo $'\n'
+
+cat >> $(brew --prefix)/etc/php/5.5/php.ini <<EOF
+[xdebug]
+xdebug.default_enable=1
+xdebug.remote_enable=1
+xdebug.remote_handler=dbgp
+xdebug.remote_host=localhost
+xdebug.remote_port=9000
+xdebug.remote_autostart=1
+; Needed for Drupal 8
+xdebug.max_nesting_level = 250
+EOF
+
+echo $'\n'
 echo "Installing Drupal Code Sniffer"
 echo $'\n'
 
