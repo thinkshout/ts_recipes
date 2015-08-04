@@ -28,7 +28,6 @@ cp ~/search_api_solr/solr-conf/3.x/* /usr/local/etc/solr36/multicore/core1/conf
 ```
 
 ## Running the server
-Everything is configured and ready to launch. Head to  the ```drupal``` dir we created.
 ```
 ln -sfv /usr/local/opt/solr36/*.plist ~/Library/LaunchAgents
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.solr36.plist 
