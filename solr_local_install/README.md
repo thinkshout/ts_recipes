@@ -5,6 +5,7 @@ This will install solr36 because Pantheon only supports solr 3.
 ```
 brew unlink solr
 brew unlink solr4
+brew tap homebrew/versions
 brew install Caskroom/cask/java
 brew install solr36
 ```
