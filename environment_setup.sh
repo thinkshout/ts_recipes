@@ -269,6 +269,12 @@ touch $(brew --prefix php55)/lib/php/.lock && chmod 0644 $(brew --prefix php55)/
 /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.5/php.ini
 
 echo $'\n'
+echo "Installing Versions"
+echo $'\n'
+
+brew tap homebrew/versions
+
+echo $'\n'
 echo "Installing Services"
 echo $'\n'
 
