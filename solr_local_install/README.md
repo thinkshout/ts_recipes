@@ -49,7 +49,7 @@ Once your server is up and running do the following to configure a search_api se
 	* solr path: /solr/core0
 5. Leave the Basic HTTP Authentication and Advanced sections blank, and save your settings.
 
-#### Enable multicore server (for multiple local sites)
+## Enable multicore server (for multiple local sites)
 If you with to run multiple websites at the same time, you may want to run multiple cores. You could reuse the same core, but you will have to reindex when you switch between projects. To create these cores, edit the solr.xml file...
 ```
 subl solr/solr.xml
