@@ -341,9 +341,17 @@ echo "Installing Frontend tools: Ruby 2.2 using Rbenv"
 echo $'\n'
 
 brew install rbenv ruby-build
-echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'| tee -a ~/.zshrc ~/.bashrc
-source ~/.zshrc
-source ~/.bashrc
+if [ -n "$ZSH_VERSION" ]; then
+  echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'>> ~/.zshrc
+  source ~/.zshrc
+elif [ -n "$BASH_VERSION" ]; then
+  echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'>> ~/.bashrc
+  source ~/.bashrc
+else
+   echo $'\n'
+   echo $'Failed to install Rbenv. Please rbenv init for your shell. Sorry.'
+   echo $'\n'
+fi
 rbenv install 2.2.2
 rbenv global 2.2.2
 
