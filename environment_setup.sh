@@ -337,7 +337,7 @@ echo $'\n'
 brew install drupal-code-sniffer
 
 echo $'\n'
-echo "Installing Frotned tools: Ruby 2.2 using Rbenv"
+echo "Installing Frontend tools: Ruby 2.2 using Rbenv"
 echo $'\n'
 
 brew install rbenv ruby-build
