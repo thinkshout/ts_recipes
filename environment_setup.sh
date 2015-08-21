@@ -337,6 +337,21 @@ echo $'\n'
 brew install drupal-code-sniffer
 
 echo $'\n'
+echo "Installing Frotned tools: Ruby 2.2 using Rbenv"
+echo $'\n'
+
+brew install rbenv ruby-build
+echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc
+source ~/.zshrc
+rbenv install 2.2.2
+rbenv global 2.2.2
+
+echo $'\n'
+echo "Installing Bundler"
+echo $'\n'
+
+/~/.rbenv/shims/gem install bundler
+echo $'\n'
 echo "Starting services"
 echo $'\n'
 
