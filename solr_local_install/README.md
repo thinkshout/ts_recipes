@@ -52,7 +52,7 @@ Once your server is up and running do the following to configure a search_api se
 ## Enable multicore server (for multiple local sites)
 If you with to run multiple websites at the same time, you may want to run multiple cores. You could reuse the same core, but you will have to reindex when you switch between projects. To create these cores, edit the solr.xml file...
 ```
-subl solr/solr.xml
+subl /usr/local/etc/solr36/multicore/solr.xml
 ```
 Remove everything from the file and replace it with the codeblock below.
 
