@@ -86,3 +86,9 @@ You may need to force clear your index. the Clear all indexed data button on the
 curl http://localhost:8983/solr/core0/update --data '<delete><query>*:*</query></delete>' -H 'Content-type:text/xml; charset=utf-8'
 curl http://localhost:8983/solr/core0/update --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
 ```
+
+## Restart your process
+
+```
+brew services restart solr36
+```
