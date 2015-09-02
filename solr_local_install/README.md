@@ -61,8 +61,9 @@ You will need to create a core element for every search core you wish to create.
 <?xml version="1.0" encoding="UTF-8" ?>
   <solr persistent="false">
     <cores adminPath="/admin/cores">
-      <core name="site1" instanceDir="site1" />
-      <core name="New Site" instanceDir="newsite_core" />
+      <core name="core0" instanceDir="core0" />
+      <core name="core1" instanceDir="core1" />
+      <core name="newsite_core" instanceDir="newsite_core" />
     </cores>
   </solr>
 ```
@@ -72,7 +73,7 @@ Inside ```/usr/local/etc/solr36/multicore/``` you will see directories for your 
 Otherwise, the step below should be repeated for each search core. Every core instance should have its own dir (e.g. site1, site2, www_whatever_com) and needs a copy of the complete solr/conf dir in its root. To save time, you can duplicate one of the directories that already has this configuration to create your new core.
 
 ```
-cp -R core1 newsite_core
+cp -R /usr/local/etc/solr36/multicore/core1 /usr/local/etc/solr36/multicore/newsite_core
 ```
 
 ## Conflicts with Pantheon's pantheon_apachesolr module
