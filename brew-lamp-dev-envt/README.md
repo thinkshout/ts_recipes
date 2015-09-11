@@ -287,7 +287,7 @@ sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
 
 #### PHP
 ```bash
-brew install php55 --homebrew-apxs --with-apache
+brew install php55 --with-homebrew-apxs --with-apache
 ```
 
 Hook PHP up to apache:
