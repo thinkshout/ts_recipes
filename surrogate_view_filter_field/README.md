@@ -1,4 +1,4 @@
-# Create a surrogate field for a filter within a view
+# Create a surrogate field for a filter that exists in a view
 ---
 
 Original purpose: to create a checkbox option for a search that filters for nodes with video content present.
