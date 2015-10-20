@@ -16,7 +16,7 @@ admin/config/people/hybridauth
 - "Authentication Providers": Holy WOW what a list. Each requires it's own config, see specific Provider docs for instructions on each one.
 - "Required Information" tab: Reducing this to "email" is fine for most cases.
 - "Widget Settings": basic appearance settings for the login buttons. Be prepared to hit these with some CSS as well.
-- "Account Settnigs": Pretty self-explanatory, but have a look.
+- "Account Settings": Pretty self-explanatory, but have a look.
 - "Drupal Forms": Where to show this login tool. Pretty obvious.
 
 Permissions:
