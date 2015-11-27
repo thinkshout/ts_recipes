@@ -6,7 +6,7 @@
 function myproject_event_entity_property_info_alter(&$info) {
   $event_properties = &$info['node']['bundles']['event']['properties'];
 
-  $event_properties['registration-capacity'] = array(
+  $event_properties['registration_capacity'] = array(
     'label' => t("Registration capacity"),
     'description' => t("Maximum number of registrants who can sign up for this event."),
     'type' => 'int',
