@@ -27,6 +27,6 @@ Now, make sure you configure some providers!
 Using Rules with Hybridauth
 ---------------------------
 
-Using the standard 'redirect' action after 'hybridauth_user_login' event will cause an endless redirect loop in the browser with a use logs in with hybrid auth. If you need a rule to redirect social and regular users after login, you will need to make two rules. One for the regular users and one for hybridauth users. 
+Using the standard 'redirect' action after 'hybridauth_user_login' event will cause an endless redirect loop in the browser when a use logs in with hybridauth. If you need a rule to redirect social and regular users after login, you will need to make two rules. One for the regular users and one for hybridauth users. 
 
 The rule for regular users can use the 'user_login' event and the 'redirect' action. The rule for hybridauth user must use the 'hybridauth_user_login' event and the 'hybridauth_set_destination' action instead of the standard 'redirect' action. Unfortunately, the 'user_login' event will first first, so you will need to add a condition to this rule to prevent the action from taking place for hybridauth logins. Add the condition 'NOT hybridauth_user_created_hybridauth' to this rule so it will be ignored for hybridauth logins and the next (hybridauth) rule will get executed for hybridauth users afterward. 
