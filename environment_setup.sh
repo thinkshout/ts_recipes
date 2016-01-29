@@ -25,18 +25,17 @@ echo "- Required: Xcode with Command Line Tools (xcode-select --install)"
 echo ""
 
 if confirmupdate "Would you like to proceed?"; then
-  echo "Starting setup..."
+  echo "Starting setup... which will install your environment or update it."
 else
   exit
 fi
 
-echo $'\n'
-echo "Installing Homebrew."
-echo $'\n'
-
 # Check Homebrew is installed.
 brew_installed=`which brew`
 if [ "$brew_installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Homebrew."
+  echo $'\n'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
   echo "Updating Homebrew"
@@ -48,62 +47,84 @@ fi
 brew_result=`brew doctor`
 
 if [ "$brew_result" != "Your system is ready to brew." ]; then
-  echo "Homebrew was not successfully installed. See message:"
+  echo "Homebrew was not successful."
   echo "$brew_result"
-  exit 1;
+  if confirmupdate "Would you like to proceed?"; then
+      echo "Starting setup..."
+    else
+      exit
+  fi
+fi
+installed=`brew tap | grep dupes`
+if [ "$installed" == "" ] ; then
+brew tap homebrew/dupes
 fi
 
-brew tap homebrew/dupes
+installed=`brew tap | grep php`
+if [ "$installed" == "" ] ; then
 brew tap homebrew/homebrew-php
+fi
 
-echo $'\n'
-echo "Installing git"
-echo $'\n'
+installed=`brew ls --versions git`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing git"
+  echo $'\n'
 
-brew install git
+  brew install git
+fi
 
-echo $'\n'
-echo "Installing wget"
-echo $'\n'
+installed=`brew ls --versions wget`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing wget"
+  echo $'\n'
 
-brew install wget
+  brew install wget
+fi
 
-echo $'\n'
-echo "Installing MySQL"
-echo $'\n'
+installed=`brew ls --versions mysql`
+if [ "$installed" == "" ] ; then
+  installed=`brew ls --versions mariadb`
+  if [ "$installed" == "" ] ; then
+    echo $'\n'
+    echo "Installing MySQL"
+    echo $'\n'
 
-brew install mysql
+    brew install mysql
 
-cp -v $(brew --prefix mysql)/support-files/my-default.cnf $(brew --prefix)/etc/my.cnf
+    cp -v $(brew --prefix mysql)/support-files/my-default.cnf $(brew --prefix)/etc/my.cnf
 
-cat >> $(brew --prefix)/etc/my.cnf <<'EOF'
+      cat >> $(brew --prefix)/etc/my.cnf <<'EOF'
 
 # Echo & Co. changes
 max_allowed_packet = 1073741824
 innodb_file_per_table = 1
 EOF
 
-sed -i '' 's/^#[[:space:]]*\(innodb_buffer_pool_size\)/\1/' $(brew --prefix)/etc/my.cnf
+    sed -i '' 's/^#[[:space:]]*\(innodb_buffer_pool_size\)/\1/' $(brew --prefix)/etc/my.cnf
+    [[ ! -d ~/Library/LaunchAgents ]] && mkdir -v ~/Library/LaunchAgents
+    ln -sfv $(brew --prefix mysql)/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+  fi
+fi
 
-[[ ! -d ~/Library/LaunchAgents ]] && mkdir -v ~/Library/LaunchAgents
+installed=`brew ls --versions httpd22`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Apache"
+  echo $'\n'
 
-ln -sfv $(brew --prefix mysql)/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/
+  sudo launchctl unload /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
 
-echo $'\n'
-echo "Installing Apache"
-echo $'\n'
+  brew install homebrew/apache/httpd22 --with-brewed-openssl
 
-sudo launchctl unload /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
+  [ ! -d ~/Sites ] && mkdir -pv ~/Sites
 
-brew install homebrew/apache/httpd22 --with-brewed-openssl
+  mkdir -pv ~/Sites/{logs,ssl}
 
-[ ! -d ~/Sites ] && mkdir -pv ~/Sites
+  touch ~/Sites/httpd-vhosts.conf
 
-mkdir -pv ~/Sites/{logs,ssl}
-
-touch ~/Sites/httpd-vhosts.conf
-
-USERHOME=$(dscl . -read /Users/`whoami` NFSHomeDirectory | awk -F": " '{print $2}') cat >> $(brew --prefix)/etc/apache2/2.2/httpd.conf <<EOF
+  USERHOME=$(dscl . -read /Users/`whoami` NFSHomeDirectory | awk -F": " '{print $2}') cat >> $(brew --prefix)/etc/apache2/2.2/httpd.conf <<EOF
 # Include our VirtualHosts
 Include ${USERHOME}/Sites/httpd-vhosts.conf
 EOF
@@ -241,84 +262,109 @@ ${TAB}<string>root</string>
 </dict>
 </plist>
 EOF'
+fi
 
-echo $'\n'
-echo "Installing PHP"
-echo $'\n'
+installed=`brew ls --versions php55`
+if [ "$installed" == "" ] ; then
+  installed=`brew ls --versions php56`
+  if [ "$installed" == "" ] ; then
+    installed=`brew ls --versions php70`
+    if [ "$installed" == "" ] ; then
+      echo $'\n'
+      echo "Installing PHP"
+      echo $'\n'
 
-# TODO: Make PHP version optional (PHP 5.3 / PHP 5.4 at least)
+      brew install php55 --with-homebrew-apxs --with-apache
 
-brew install php55 --with-homebrew-apxs --with-apache
-
-cat >> $(brew --prefix)/etc/apache2/2.2/httpd.conf <<EOF
+      cat >> $(brew --prefix)/etc/apache2/2.2/httpd.conf <<EOF
 # Send PHP extensions to mod_php
 AddHandler php5-script .php
 AddType text/html .php
 DirectoryIndex index.php index.html
 EOF
 
-sed -i '-default' "s|^;\(date\.timezone[[:space:]]*=\).*|\1 \"$(sudo systemsetup -gettimezone|awk -F": " '{print $2}')\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 256M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 300|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|;" $(brew --prefix)/etc/php/5.5/php.ini
+      sed -i '-default' "s|^;\(date\.timezone[[:space:]]*=\).*|\1 \"$(sudo systemsetup -gettimezone|awk -F": " '{print $2}')\"|; s|^\(memory_limit[[:space:]]*=\).*|\1 256M|; s|^\(post_max_size[[:space:]]*=\).*|\1 200M|; s|^\(upload_max_filesize[[:space:]]*=\).*|\1 100M|; s|^\(default_socket_timeout[[:space:]]*=\).*|\1 600|; s|^\(max_execution_time[[:space:]]*=\).*|\1 300|; s|^\(max_input_time[[:space:]]*=\).*|\1 600|;" $(brew --prefix)/etc/php/5.5/php.ini
 
-USERHOME=$(dscl . -read /Users/`whoami` NFSHomeDirectory | awk -F": " '{print $2}') cat >> $(brew --prefix)/etc/php/5.5/php.ini <<EOF
+       USERHOME=$(dscl . -read /Users/`whoami` NFSHomeDirectory | awk -F": " '{print $2}') cat >> $(brew --prefix)/etc/php/5.5/php.ini <<EOF
 ; PHP Error log
 error_log = ${USERHOME}/Sites/logs/php-error_log
 EOF
 
-touch $(brew --prefix php55)/lib/php/.lock && chmod 0644 $(brew --prefix php55)/lib/php/.lock
+      touch $(brew --prefix php55)/lib/php/.lock && chmod 0644 $(brew --prefix php55)/lib/php/.lock
 
-/usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.5/php.ini
+      /usr/bin/sed -i '' "s|^\(\;\)\{0,1\}[[:space:]]*\(opcache\.enable[[:space:]]*=[[:space:]]*\)0|\21|; s|^;\(opcache\.memory_consumption[[:space:]]*=[[:space:]]*\)[0-9]*|\1256|;" $(brew --prefix)/etc/php/5.5/php.ini
+    fi
+  fi
+fi
 
-echo $'\n'
-echo "Installing Versions"
-echo $'\n'
+installed=`brew tap | grep versions`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Versions"
+  echo $'\n'
 
-brew tap homebrew/versions
+  brew tap homebrew/versions
+fi
 
-echo $'\n'
-echo "Installing Services"
-echo $'\n'
+installed=`brew tap | grep services`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Services"
+  echo $'\n'
 
-brew tap homebrew/services
+  brew tap homebrew/services
+fi
 
-echo $'\n'
-echo "Installing Dnsmasq"
-echo $'\n'
+installed=`brew ls --versions dnsmasq`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Dnsmasq"
+  echo $'\n'
 
-brew install dnsmasq
+  brew install dnsmasq
 
-echo 'address=/.dev/127.0.0.1' > $(brew --prefix)/etc/dnsmasq.conf
-echo 'listen-address=127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
-echo 'port=35353' >> $(brew --prefix)/etc/dnsmasq.conf
+  echo 'address=/.dev/127.0.0.1' > $(brew --prefix)/etc/dnsmasq.conf
+  echo 'listen-address=127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf
+  echo 'port=35353' >> $(brew --prefix)/etc/dnsmasq.conf
 
-ln -sfv $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist ~/Library/LaunchAgents
+  ln -sfv $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist ~/Library/LaunchAgents
 
-sudo mkdir -v /etc/resolver
-sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
-sudo bash -c 'echo "port 35353" >> /etc/resolver/dev'
+  sudo mkdir -v /etc/resolver
+  sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
+  sudo bash -c 'echo "port 35353" >> /etc/resolver/dev'
+fi
 
-echo $'\n'
-echo "Installing Drush"
-echo $'\n'
+installed=`brew ls --versions drush`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Drush"
+  echo $'\n'
 
-brew install drush
+  brew install drush
+fi
 
-echo $'\n'
-echo "Installing Composer"
-echo $'\n'
+installed=`brew ls --versions composer`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Composer"
+  echo $'\n'
 
-brew install composer
+  brew install composer
+fi
 
-echo $'\n'
-echo "Installing Xdebug"
-echo $'\n'
+installed=`brew ls --versions php55-xdebug`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Xdebug"
+  echo $'\n'
 
-brew install php55-xdebug
+  brew install php55-xdebug
 
-echo $'\n'
-echo "Adding Xdebug configuration to php.ini (php 5.5)"
-echo $'\n'
+  echo $'\n'
+  echo "Adding Xdebug configuration to php.ini (php 5.5)"
+  echo $'\n'
 
-cat >> $(brew --prefix)/etc/php/5.5/php.ini <<EOF
+  cat >> $(brew --prefix)/etc/php/5.5/php.ini <<EOF
 [xdebug]
 xdebug.default_enable=1
 xdebug.remote_enable=1
@@ -329,46 +375,55 @@ xdebug.remote_autostart=1
 ; Needed for Drupal 8
 xdebug.max_nesting_level = 256
 EOF
-
-echo $'\n'
-echo "Installing Drupal Code Sniffer"
-echo $'\n'
-
-brew install drupal-code-sniffer
-
-echo $'\n'
-echo "Installing Frontend tools: Ruby 2.2 using Rbenv"
-echo $'\n'
-
-brew install rbenv ruby-build
-if [ -n "$ZSH_VERSION" ]; then
-  echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'>> ~/.zshrc
-  source ~/.zshrc
-elif [ -n "$BASH_VERSION" ]; then
-  echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'>> ~/.bashrc
-  source ~/.bashrc
-else
-   echo $'\n'
-   echo $'Failed to install Rbenv. Please rbenv init for your shell. Sorry.'
-   echo $'\n'
 fi
-rbenv install 2.2.2
-rbenv global 2.2.2
 
-echo $'\n'
-echo "Installing Bundler"
-echo $'\n'
+installed=`brew ls --versions drupal-code-sniffer`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Drupal Code Sniffer"
+  echo $'\n'
 
-/~/.rbenv/shims/gem install bundler
-echo $'\n'
-echo "Starting services"
-echo $'\n'
+  brew install drupal-code-sniffer
+fi
 
-launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.httpd22.plist
-sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
-launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.dnsmasq.plist
+installed=`brew ls --versions rbenv`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Frontend tools: Ruby 2.2 using Rbenv"
+  echo $'\n'
 
+  brew install rbenv ruby-build
+  if [ -n "$ZSH_VERSION" ]; then
+    echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'>> ~/.zshrc
+    source ~/.zshrc
+  elif [ -n "$BASH_VERSION" ]; then
+    echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'>> ~/.bashrc
+    source ~/.bashrc
+  else
+     echo $'\n'
+     echo $'Failed to install Rbenv. Please rbenv init for your shell. Sorry.'
+     echo $'\n'
+  fi
+  rbenv install 2.2.2
+  rbenv global 2.2.2
+fi
+
+installed=`which bundler`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo "Installing Bundler"
+  echo $'\n'
+
+  /~/.rbenv/shims/gem install bundler
+  echo $'\n'
+  echo "Starting services"
+  echo $'\n'
+
+  launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+  launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.httpd22.plist
+  sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
+  launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.dnsmasq.plist
+fi
 echo $'\n'
 echo "Dev environment setup complete"
 echo $'\n'
