@@ -17,18 +17,23 @@ confirmupdate () {
 xcode_path=`xcode-select -p`
 echo ""
 echo "Sets up the standard ThinkShout development environment."
-echo "Work-in-progress."
 echo ""
 echo "There's no UNDO for this script, so please double check the prereqs now:"
 echo "- Required: OSX 10.10 Yosemite"
 echo "- Required: Xcode with Command Line Tools (xcode-select --install)"
 echo ""
 
-if confirmupdate "Would you like to proceed?"; then
-  echo "Starting setup... which will install your environment or update it."
-else
+if ! confirmupdate "Would you like to proceed?"; then
   exit
 fi
+
+if confirmupdate "Would you like to install desktop programs like PHPStorm, Sequel Pro, and Chrome?"; then
+  confirm_cask=true;
+else
+  confirm_cask=false;
+fi
+
+echo "Starting setup... which will install your environment or update it."
 
 # Check Homebrew is installed.
 brew_installed=`which brew`
@@ -414,7 +419,7 @@ if [ "$installed" == "" ] ; then
   echo "Installing Bundler"
   echo $'\n'
 
-  /~/.rbenv/shims/gem install bundler
+  ~/.rbenv/shims/gem install bundler
   echo $'\n'
   echo "Starting services"
   echo $'\n'
@@ -442,15 +447,170 @@ if [ "$installed" == "" ] ; then
   npm install -g grunt-cli
 fi
 
+installed=`which gulp`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo 'Installing gulp'
+  echo $'\n'
+  npm install --global gulp-cli
+fi
+
 installed=`which compass`
 if [ "$installed" == "" ] ; then
   echo $'\n'
   echo 'Installing Compass'
   echo $'\n'
 
-  /~/.rbenv/shims/gem install compass
+  ~/.rbenv/shims/gem install compass
 fi
 
+if [ "$confirm_cask" == true ] ; then
+  echo $'\n'
+  echo 'Installing any additional desktop applications...'
+
+  if ! brew info cask &>/dev/null; then
+    echo $'\n'
+    echo 'Installing Cask'
+    echo $'\n'
+
+    brew tap phinze/homebrew-cask
+    brew install brew-cask
+  fi
+
+  installed=`ls /Applications/ | grep -i Google\ Chrome`
+  if [ "$installed" == "" ] ; then
+    installed=`ls ~/Applications/ | grep -i Google\ Chrome`
+    if [ "$installed" == "" ] ; then
+
+      echo $'\n'
+      echo 'Installing Google Chrome'
+      echo $'\n'
+
+      brew cask install google-chrome
+    fi
+  fi
+
+  installed=`ls /Applications/ | grep -i Slack`
+  if [ "$installed" == "" ] ; then
+    installed=`ls ~/Applications/ | grep -i Slack`
+    if [ "$installed" == "" ] ; then
+
+      echo $'\n'
+      echo 'Installing Slack'
+      echo $'\n'
+
+      brew cask install slack
+    fi
+  fi
+
+  installed=`ls /Applications/ | grep -i iTerm`
+  if [ "$installed" == "" ] ; then
+    installed=`ls ~/Applications/ | grep -i iTerm`
+    if [ "$installed" == "" ] ; then
+
+      echo $'\n'
+      echo 'Installing iTerm2'
+      echo $'\n'
+
+      brew cask install iterm2
+    fi
+  fi
+
+  installed=`ls /Applications/ | grep -i 'Sequel Pro'`
+  if [ "$installed" == "" ] ; then
+    installed=`ls ~/Applications/ | grep -i 'Sequel Pro'`
+    if [ "$installed" == "" ] ; then
+
+      echo $'\n'
+      echo 'Installing Sequel Pro'
+      echo $'\n'
+
+      brew cask install sequel-pro
+    fi
+  fi
+
+  installed=`ls /Applications/ | grep -i PhpStorm`
+  if [ "$installed" == "" ] ; then
+    installed=`ls ~/Applications/ | grep -i PhpStorm`
+    if [ "$installed" == "" ] ; then
+
+      echo $'\n'
+      echo 'Installing PhpStorm'
+      echo $'\n'
+
+      brew cask install phpstorm
+    fi
+  fi
+
+  installed=`ls /Applications/ | grep -i 1Password`
+  if [ "$installed" == "" ] ; then
+    installed=`ls ~/Applications/ | grep -i 1Password`
+    if [ "$installed" == "" ] ; then
+
+      echo $'\n'
+      echo 'Installing 1Password'
+      echo $'\n'
+
+      brew cask install 1password
+    fi
+  fi
+
+  installed=`which zsh`
+  if [ "$installed" == "" ] ; then
+    echo $'\n'
+    echo "Installing ZSH"
+    echo $'\n'
+
+    brew install zsh
+  fi
+
+  installed=`ls ~/.oh-my-zsh | grep -i 'oh-my-zsh'`
+  if [ "$installed" == "" ] ; then
+    echo $'\n'
+    echo ' Installing Oh My ZSH'
+    echo $'\n'
+
+    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  fi
+
+  installed=`which hub`
+  if [ "$installed" == "" ] ; then
+    echo $'\n'
+    echo "Installing Hub"
+    echo $'\n'
+
+    brew install hub
+  fi
+
+  installed=`which terminus`
+  if [ "$installed" == "" ] ; then
+    echo $'\n'
+    echo "Installing Terminus"
+    echo $'\n'
+
+    composer require pantheon-systems/terminus
+  fi
+
+    installed=`which ngrok`
+  if [ "$installed" == "" ] ; then
+    echo $'\n'
+    echo "Installing ngrok"
+    echo $'\n'
+
+    brew cask install ngrok
+  fi
+
+  installed=`ls /Applications/ | grep -i 'Adobe Creative Cloud'`
+  if [ "$installed" == "" ] ; then
+
+    echo $'\n'
+    echo 'Installing Adobe Creative Cloud'
+    echo $'\n'
+
+    brew cask install adobe-creative-cloud
+    open  /opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative\ Cloud\ Installer.app
+  fi
+fi
 echo $'\n'
 echo "Dev environment setup complete"
 echo $'\n'
