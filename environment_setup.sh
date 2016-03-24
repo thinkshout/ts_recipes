@@ -424,6 +424,33 @@ if [ "$installed" == "" ] ; then
   sudo launchctl load -Fw /Library/LaunchDaemons/co.echo.httpdfwd.plist
   launchctl load -Fw ~/Library/LaunchAgents/homebrew.mxcl.dnsmasq.plist
 fi
+
+installed=`which npm`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo 'Installing NPM'
+  echo $'\n'
+
+  brew install npm;npm install -g npm@latest;
+fi
+
+installed=`which grunt`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo 'Installing Grunt'
+  echo $'\n'
+  npm install -g grunt-cli
+fi
+
+installed=`which compass`
+if [ "$installed" == "" ] ; then
+  echo $'\n'
+  echo 'Installing Compass'
+  echo $'\n'
+
+  /~/.rbenv/shims/gem install compass
+fi
+
 echo $'\n'
 echo "Dev environment setup complete"
 echo $'\n'
