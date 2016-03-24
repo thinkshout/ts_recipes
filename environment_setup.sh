@@ -355,7 +355,7 @@ if [ "$installed" == "" ] ; then
   echo $'\n'
 
   brew install composer
-  export PATH=~/.composer/vendor/bin:$PATH
+  echo "export PATH=~/.composer/vendor/bin:$PATH" >> ~/.zshrc
 fi
 
 installed=`brew ls --versions php55-xdebug`
