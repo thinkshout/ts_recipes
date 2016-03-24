@@ -355,6 +355,7 @@ if [ "$installed" == "" ] ; then
   echo $'\n'
 
   brew install composer
+  export PATH=~/.composer/vendor/bin:$PATH
 fi
 
 installed=`brew ls --versions php55-xdebug`
@@ -601,7 +602,7 @@ if [ "$confirm_cask" == true ] ; then
     echo "Installing Terminus"
     echo $'\n'
 
-    composer require pantheon-systems/terminus
+    composer global require pantheon-systems/terminus
   fi
 
     installed=`which ngrok`
