@@ -490,6 +490,19 @@ if [ "$confirm_cask" == true ] ; then
     fi
   fi
 
+    installed=`ls /Applications/ | grep -i Firefox`
+  if [ "$installed" == "" ] ; then
+    installed=`ls ~/Applications/ | grep -i Firefox`
+    if [ "$installed" == "" ] ; then
+
+      echo $'\n'
+      echo 'Installing Firefox'
+      echo $'\n'
+
+      brew cask install firefox
+    fi
+  fi
+
   installed=`ls /Applications/ | grep -i Slack`
   if [ "$installed" == "" ] ; then
     installed=`ls ~/Applications/ | grep -i Slack`
