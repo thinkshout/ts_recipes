@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function myproject_event_entity_property_info_alter(&$info) {
+  $event_properties = &$info['node']['bundles']['event']['properties'];
+
+  $event_properties['registration_capacity'] = array(
+    'label' => t("Registration capacity"),
+    'description' => t("Maximum number of registrants who can sign up for this event."),
+    'type' => 'int',
+    'getter callback' => 'myproject_event_property_registration_capacity_get',
+    'setter callback' => 'myproject_event_property_registration_capacity_set',
+  );
+}
+
+/**
+ * Callback to get $event->registration_capacity.
+ */
+function myproject_event_property_registration_capacity_get($event, $options, $property_name, $entity_type) {
+  $settings = registration_entity_settings('node', $event->nid);
+  if ($settings) {
+    return $settings['capacity'];
+  }
+}
+
+/**
+ * Callback to set $event->registration_capacity.
+ */
+function myproject_event_property_registration_capacity_set($event, $name, $value, $lang, $type, $info) {
+  $settings = registration_entity_settings('node', $event->nid);
+  if ($settings) {
+    $settings['capacity'] = $value;
+    registration_update_entity_settings('node', $event->nid, $settings);
+  }
+}
+
