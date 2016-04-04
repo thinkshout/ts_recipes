@@ -77,7 +77,11 @@ cp -R /usr/local/etc/solr36/multicore/core1 /usr/local/etc/solr36/multicore/news
 ```
 
 ## Conflicts with Pantheon's pantheon_apachesolr module
-Once you enable the pantheon_apachesolr module it overrides any connection info for any solr server used. You will need to disable pantheon_apachesolr to have a local solr server work.
+Once you enable the pantheon_apachesolr module it overrides any connection info for any solr server used. You will need to disable pantheon_apachesolr to have a local solr server work, or you can add the following line to your local.settings.php if you want to use the existing search api server for a project:
+
+```
+$conf['pantheon_apachesolr_search_api_solr_service_class'] = 'SearchApiSolrService';
+```
 
 
 ## Empty facets or search results showing up
