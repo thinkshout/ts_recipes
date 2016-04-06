@@ -37,6 +37,12 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.solr36.plist
 
 If you see the [solr admin page](http://localhost:8983/solr/core0/admin/) everything is working!
 
+## Tika
+If your search indexes attachments, you will also have to install tika:
+```
+brew install tika
+```
+
 ## Drupal config
 Once your server is up and running do the following to configure a search_api server for your site.
 
@@ -48,7 +54,8 @@ Once your server is up and running do the following to configure a search_api se
 	* solr port: 8983
 	* solr path: /solr/core0
 5. Leave the Basic HTTP Authentication and Advanced sections blank, and save your settings.
-
+6. If you installed tika, edit `/admin/config/search/search_api/attachments` and update the tika directory path and tika jar file settings, e.g.: `/usr/local/Cellar/tika/1.11/libexec/` and `tika-app-1.11.jar`
+ 
 ## Enable multicore server (for multiple local sites)
 If you with to run multiple websites at the same time, you may want to run multiple cores. You could reuse the same core, but you will have to reindex when you switch between projects. To create these cores, edit the solr.xml file...
 ```
