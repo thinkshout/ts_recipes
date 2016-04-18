@@ -28,6 +28,8 @@ Creates a Url object for a relative URI reference submitted by user input. use t
 
 Creates a link from a given Url object. Likely requires [additional methods](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Link.php/class/Link/8) to get the desired effect.
 
+#### Additional Thoughts
+
 Using `Link::fromTextAndUrl` and `toRenderable()` is certainly a way to do replace
 the `l()` and `url()` functions, however Drupal Core Link documentation recommends
 using the form API like so:
