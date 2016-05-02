@@ -109,3 +109,10 @@ public function autocomplete($param) {
 ```
 
 ***Important:*** Make sure `'value'` is always a string. autocomplete.js calls .search() when the select handler is triggered and will break on non-string values.
+
+## Loading arbitrary entity's add/edit/view/delete forms.
+```
+$user = user_load(1);
+$form = \Drupal::service('entity.form_builder')->getForm($user, 'default');
+```
+This example gets the add form - "default" represents the operation (e.g. edit, delete).
