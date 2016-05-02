@@ -35,3 +35,22 @@ Get all view modes of an entity using [\Drupal::entityManager()->getViewModes()]
 $entity_type = 'node';
 $view_modes = \Drupal::entityManager()->getViewModes($entity_type);
 ```
+
+## Entity Forms
+To load an entity's add/edit/view/delete form use the [EntityFormBuilder::getForm](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21EntityFormBuilder.php/function/EntityFormBuilder%3A%3AgetForm/8.2.x) function:
+```
+$user = user_load(1);
+$form = \Drupal::service('entity.form_builder')->getForm($user, 'default');
+```
+This example gets the default form - "default" represents the operation (e.g. add, edit, delete).
+The class name for the form for each operation (add, edit, delete, etc.) can be found in the form section of the handlers entity annotation. For example:
+```
+  handlers = {
+    "form" = {
+      "default" = "Drupal\redhen_contact\Form\ContactForm",
+      "add" = "Drupal\redhen_contact\Form\ContactForm",
+      "edit" = "Drupal\redhen_contact\Form\ContactForm",
+      "delete" = "Drupal\redhen_contact\Form\ContactDeleteForm",
+},
+```
+Alternatively, the form class can be set from [hook_entity_type_build()](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21entity.api.php/function/hook_entity_type_build/8.2.x).
