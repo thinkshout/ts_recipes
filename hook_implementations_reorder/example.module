@@ -1,0 +1,19 @@
+/**
+ * Implements hook_module_implements_alter().
+ */
+function example_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    example_reorder_indexes($implementations, 'views', 'cascade_event');
+  }
+}
+
+/**
+ * Helper function to re-order hook implementations.
+ */
+function example_reorder_indexes(&$array, $first, $second) {
+  unset($array[$second]);
+  $indexed = array_keys($array);
+  $place = array_search($first, $indexed);
+  array_splice($indexed, $place + 1, 0, $second);
+  $array = array_combine($indexed, array_fill(0, count($indexed), FALSE));
+}
