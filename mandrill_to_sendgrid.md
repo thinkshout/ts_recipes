@@ -10,6 +10,7 @@ as easy as possible for our team.
 * Replace mandrill with the smtp module in the site's build dependency files.
 * Visit the SMTP configurations page via this path: `/admin/config/system/smtp`
 * Follow the [SendGrid recommended SMTP settings](https://sendgrid.com/docs/Classroom/Basics/Email_Infrastructure/recommended_smtp_settings.html).
+* Change configurations from Mandrill to SMTP on the Mail System configuration page: `/admin/config/system/mailsystem`
 
 
 [**sendgrid_integration**](https://www.drupal.org/project/sendgrid_integration) -
