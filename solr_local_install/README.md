@@ -19,7 +19,7 @@ Get the module from the [search_api_solr Drupal.org page](https://www.drupal.org
 
 ```cd ~;drush dl search_api_solr```
 
-This module contains config files we'll be copying to our Solr installatinon.
+This module contains config files we'll be copying to our Solr installation.
 
 #### Modify the solr installation with Drupal config
 
