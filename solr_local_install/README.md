@@ -10,6 +10,18 @@ brew install Caskroom/cask/java
 brew install solr36
 ```
 
+Note: If homebrew cannot find a tap for solr36, you can manually download the file from a repo like: https://github.com/paulirish/homebrew-versions-1/blob/master/solr36.rb 
+
+and put it at `/usr/local/Library/Taps/homebrew/homebrew-versions/solr36.rb` 
+
+This change would usually be overwritten by a `brew update` or a `brew upgrade`, but if you add the file to your git excludes, it should be safe. To do this, add the following line to the bottom of `/usr/local/Library/Taps/homebrew/homebrew-versions/.git/info/exclude`
+
+```
+solr36.rb
+```
+
+You should now be able to run `brew install solr36` as recommended above.
+
 ## Once you've got solr installed
 For the solr configuration we need to copy some Drupal settings. These settings configure solr to work with fieldtypes from Drupal among other stuff.
 
