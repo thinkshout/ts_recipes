@@ -20,6 +20,7 @@ _Please note:_ "created" needs to be added to the list of Fields in the Search A
 
 There are a couple resources to help better understand use cases and what this chunk of code does:
 
+* [Solr Wiki - FunctionQuery](https://wiki.apache.org/solr/FunctionQuery#recip)
 * [Date-boosting Solr / Drupal search results](http://www.metaltoad.com/blog/date-boosting-solr-drupal-search-results)
 * [Stronger boosting by date in Solr](http://stackoverflow.com/questions/22017616/stronger-boosting-by-date-in-solr/22213417#22213417)
 
