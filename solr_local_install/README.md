@@ -1,4 +1,4 @@
-This will install solr36 because Pantheon only supports solr 3. (But if you really want to install solr4...)
+This will install solr36 because Pantheon only supports solr 3. (But if you really want to [install solr4...](#install-solr4))
 
 ## Install required packages via Homebrew
 
