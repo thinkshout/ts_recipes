@@ -118,7 +118,7 @@ curl http://localhost:8983/solr/core0/update --data '<commit/>' -H 'Content-type
 brew services restart solr36
 ```
 
-### Install solr4
+## Install solr4
 
 Replace PROJECT with the name of your project. Solr core will live at http://localhost:8983/solr/PROJECT
 
@@ -131,7 +131,8 @@ mkdir /usr/local/opt/solr4/example/solr/PROJECT/conf
 cp search_api_solr/solr-conf/4.x/* /usr/local/opt/solr4/example/solr/PROJECT/conf
 ```
 
-Launch http://localhost:8983/solr/#/~cores
-Click Add Core
-name: PROJECT
-instanceDir: PROJECT
+- Launch [http://localhost:8983/solr/](http://localhost:8983/solr/)
+- Click Core Admin
+- Click Add Core
+- name: PROJECT
+- instanceDir: PROJECT
