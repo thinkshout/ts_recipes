@@ -1,4 +1,4 @@
-This will install solr36 because Pantheon only supports solr 3.
+This will install solr36 because Pantheon only supports solr 3. (But if you really want to install solr4...)
 
 ## Install required packages via Homebrew
 
@@ -117,3 +117,21 @@ curl http://localhost:8983/solr/core0/update --data '<commit/>' -H 'Content-type
 ```
 brew services restart solr36
 ```
+
+### Install solr4
+
+Replace PROJECT with the name of your project. Solr core will live at http://localhost:8983/solr/PROJECT
+
+```
+brew tap homebrew/versions
+brew install solr4
+brew services start homebrew/versions/solr4
+mkdir /usr/local/opt/solr4/example/solr/PROJECT
+mkdir /usr/local/opt/solr4/example/solr/PROJECT/conf
+cp search_api_solr/solr-conf/4.x/* /usr/local/opt/solr4/example/solr/PROJECT/conf
+```
+
+Launch http://localhost:8983/solr/#/~cores
+Click Add Core
+name: PROJECT
+instanceDir: PROJECT
