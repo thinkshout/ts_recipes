@@ -16,7 +16,20 @@ function splc_search_api_search_api_solr_query_alter(&$call_args, SearchApiQuery
   }
 }
 ```
+
 _Please note:_ "created" needs to be added to the list of Fields in the Search API Solr "Fields" tab: `admin/config/search/search_api/index/default_node_index/fields`
+
+### Add multi-word search capabilities:
+1. Update all search views to use the "single" query parse mode.
+2. Enable phrase slop in the `hook_search_api_solr_query_alter()` to get "single" parse mode to behave like "multiple mode". Here's an example of this (place it inside of the condition above):
+
+```
+$call_args['params']['ps'] = 10;
+// Apply to same fields used for keyword search.
+$call_args['params']['pf'] = $call_args['params']['qf'];
+```
+
+---
 
 There are a couple resources to help better understand use cases and what this chunk of code does:
 
