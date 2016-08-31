@@ -10,7 +10,7 @@ Here are the steps needed to properly add a new release to one of our contribute
 ### Create your new tag and push it up to Drupal.org
 
 * Run `git tag [new tag]`
-* Run `git push [do] [branch]`
+* Run `git push [drupal remote] [branch]`
 * Run `git push [drupal remote] [new tag]`
 
 ### Go to the new release form on Drupal.org
