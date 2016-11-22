@@ -22,4 +22,4 @@ Using Bedrock to create a new WordPress project.
 
 4. Set your site vhost document root to `~/Sites/project-name/web/`
 
-5. Access WP admin at `http://example.devwp/wp-admin`
+5. Access WP admin at `http://example.dev/wp/wp-admin`
