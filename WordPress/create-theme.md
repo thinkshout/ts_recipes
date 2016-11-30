@@ -1,3 +1,5 @@
+## Theme Installation
+
 * Download a theme using the all advanced fields (including Check Sassify!) from http://underscores.me/
 * Install the theme into `/web/wp-content/themes/`
 * Delete other themes
