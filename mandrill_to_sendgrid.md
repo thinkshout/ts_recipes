@@ -14,4 +14,7 @@ as easy as possible for our team.
 
 
 [**sendgrid_integration**](https://www.drupal.org/project/sendgrid_integration) -
-This module depends on composer_manager. We want to avoid this if we can. Additionally, the SMTP module offers more support from the Drupal community and is more widely used.
+This module depends on composer_manager. We want to avoid this if we can. Additionally, the SMTP module offers more support from the Drupal community and is more widely used. Possible reasons you would want to consider the SendGrid module over simple SMTP:
+
+* The site uses one or more custom transactional email templates that need to be preserved.
+* The site needs to send html email and doesn't have another module in place to do this (like HTML Mail, or MIME mail)
