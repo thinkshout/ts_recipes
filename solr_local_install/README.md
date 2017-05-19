@@ -12,7 +12,7 @@ brew install solr36
 
 Note: If homebrew cannot find a tap for solr36, you can manually download the file from a repo like: https://github.com/paulirish/homebrew-versions-1/blob/master/solr36.rb 
 
-and put it at `/usr/local/Library/Taps/homebrew/homebrew-versions/solr36.rb` 
+and put it at `/usr/local/Homebrew/Library/Taps/homebrew/homebrew-versions/` (may be `/usr/local/Library/Taps/homebrew/homebrew-versions/solr36.rb` on some systems)
 
 This change would usually be overwritten by a `brew update` or a `brew upgrade`, but if you add the file to your git excludes, it should be safe. To do this, add the following line to the bottom of `/usr/local/Library/Taps/homebrew/homebrew-versions/.git/info/exclude`
 
