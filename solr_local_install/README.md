@@ -64,7 +64,7 @@ Once your server is up and running do the following to configure a search_api se
 4. Use the following credentials for the solr service:
 	* solr host: localhost
 	* solr port: 8983
-	* solr path: /solr/core0
+	* solr path: /solr/core0 (note: if this gives you an error, try /solr/#/core0)
 5. Leave the Basic HTTP Authentication and Advanced sections blank, and save your settings.
 6. If you installed tika, edit `/admin/config/search/search_api/attachments` and update the tika directory path and tika jar file settings, e.g.: `/usr/local/Cellar/tika/1.11/libexec/` and `tika-app-1.11.jar`
  
