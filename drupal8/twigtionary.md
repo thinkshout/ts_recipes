@@ -70,7 +70,7 @@ Create your shared template. For example, `page-banner.html.twig`.
 
 Add an include in your node template that references a dictionary of fields you want to pass to the shared header
 
-twig```
+```twig
 {% 
   set header_fields = {
     'content_type': node.bundle | replace({'_':' '}) | upper,
