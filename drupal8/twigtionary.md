@@ -29,7 +29,7 @@ Welcome to Twigtionary. This is a list of helpful twig snippets to help your D8 
 {% endfor %}
 ```
 
-## Use a shared template to pass var into from a node template
+## Use a shared template that receives variables from your node templates
 Create your shared template. For example, `page-banner.html.twig`.
 
 ```twig
