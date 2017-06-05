@@ -81,5 +81,4 @@ twig```
 %}
 
 {% include '@ts_ttol/shared/page-banner-with-bookmark.html.twig' with header_fields %}
-
 ```
