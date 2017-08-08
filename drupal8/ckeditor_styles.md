@@ -1,4 +1,4 @@
-## Admin Perspective Styling
+## Admin Perspective WYSIWYG Styling
 
 Add styles to the wysiwyg editor by:
 * Add this bit of code to your `/web/themes/custom/ts_themename/ts_themename.info.yml` file:
