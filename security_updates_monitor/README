@@ -5,7 +5,6 @@ It uses drush sa to get a list of sites and can filter on things like .live to o
 # TODO/Ideas
 * enable/disable update module when it's not enabled (not sure if we want to do this on live sites)
 * Make output look nice
-* Check all versions between current and new for security advisories (only the new version is checked now)
 * Automatically email results
  * Recipients could be based on security risk level (if a critical update is present, email to x and y, otherwise just to x)
 * See if we can make this work with Drupal 8 (composer) and Wordpress
