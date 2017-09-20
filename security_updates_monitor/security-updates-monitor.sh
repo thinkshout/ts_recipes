@@ -1,7 +1,5 @@
 sites=`drush sa`
 dev_sites=`echo "$sites" | grep '\.dev$'`
-# dev_sites=`echo "$sites" | grep '\.givingforum.dev$'`
-# dev_sites=`echo "$sites" | grep '\.nastad.dev$'`
 
 while read -r line; do
 
@@ -111,7 +109,7 @@ while read -r line; do
                 sa_level="${BASH_REMATCH[1]}"
                 sa_level=`echo "$sa_level" | xargs`
                 # echo "sa_level: $sa_level"
-                echo "  ! Security advisory Level: $sa_level ($sa_url)"
+                echo "  ! Security advisory level: $sa_level ($sa_url)"
               fi
             fi
           done
