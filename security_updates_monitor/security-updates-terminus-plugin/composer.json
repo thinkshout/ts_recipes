@@ -1,0 +1,10 @@
+{
+    "name": "thinkshout/terminus-security-updates",
+    "description": "Scan all sites for pending security updates",
+    "type": "terminus-plugin",
+    "extra": {
+        "terminus": {
+            "compatible-version": "1.*"
+        }
+    }
+}
