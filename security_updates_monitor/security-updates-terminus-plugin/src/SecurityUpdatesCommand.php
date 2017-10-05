@@ -19,20 +19,28 @@ class SecurityUpdatesCommand extends SiteCommand {
       ),
     );
 
+    $all_sites_array = [];
+
+    $site_array = [];
+
     $site['name'] = 'givingforum';
+    $site_array['name'] = $site['name'];
 
     $command = "terminus remote:drush {$site['name']}.dev -- pm-updatecode --security-only -n";
     $response = $this->pipe_exec($command);
-    print_r($response[1]);
+//    print_r($response[1]);
 
     if (strpos($response[1], "Command pm-updatecode needs the following modules installed/enabled") !== false) {
       $this->log()->notice("- update module not enabled on this site");
+      $site_array['message'] = "update module not enabled on this site";
     }
     if (strpos($response[1], "This codebase is assembled with Composer instead of Drush.") !== false) {
       $this->log()->notice("- site uses Composer instead of Drush");
+      $site_array['message'] = "site uses Composer instead of Drush";
     }
     if (strpos($response[1], "No security updates available.") !== false) {
       $this->log()->notice("- no security updates available");
+      $site_array['message'] = "no security updates available";
     }
     if (strpos($response[1], "SECURITY UPDATE available") !== false) {
       $this->log()->notice("security update found");
@@ -53,9 +61,10 @@ class SecurityUpdatesCommand extends SiteCommand {
         // Parse security updates
         preg_match_all('/.*(\bSECURITY UPDATE available\b).*/', $response[1], $matches);
         if (isset($matches[0])) {
+
           foreach ($matches[0] as $match) {
 
-            $name = trim(substr($matches[0][0], $name_start, $name_length));
+            $name = trim(substr($match, $name_start, $name_length));
 
             // Get or create machine name
             preg_match('/.*\((.*)\)/', $name, $machine_name_match);
@@ -65,18 +74,22 @@ class SecurityUpdatesCommand extends SiteCommand {
             else {
               $machine_name = strtolower(str_replace(' ', '', $name));
             }
+            $site_update_array = [];
+            $site_update_array['machine_name'] = $machine_name;
 
-            $installed_version = trim(substr($matches[0][0], $installed_version_start, $installed_version_length));
+            $installed_version = trim(substr($match, $installed_version_start, $installed_version_length));
             preg_match('/([^-]+)-(\d)+\.*(\d)/', $installed_version, $version_match);
             $installed_version_core = $version_match[1];
             $installed_version_major = $version_match[2];
             $installed_version_minor = $version_match[3];
+            $site_update_array['installed_version'] = $installed_version;
 
-            $proposed_version = trim(substr($matches[0][0], $proposed_version_start, $proposed_version_length));
+            $proposed_version = trim(substr($match, $proposed_version_start, $proposed_version_length));
             preg_match('/([^-]+)-(\d)+\.*(\d)/', $proposed_version, $version_match);
             $proposed_version_core = $version_match[1];
             $proposed_version_major = $version_match[2];
             $proposed_version_minor = $version_match[3];
+            $site_update_array['proposed_version'] = $proposed_version;
 
             print ("\n" . "----------" . "\n");
             print ("name: " . $name . "\n");
@@ -108,6 +121,7 @@ class SecurityUpdatesCommand extends SiteCommand {
                   preg_match('/<a href=\"(.*)\" .*>SA-.*<\/a>/', $item_description, $security_advisory_url_match);
                   if (isset($security_advisory_url_match[1])) {
                     print ($security_advisory_url_match[1] . "\n");
+                    $site_update_array['security_advisory_url'] = $security_advisory_url_match[1];
 
                     // find security risk level on security advisory page
                     $sa_url_contents = file_get_contents($security_advisory_url_match[1], false, stream_context_create($ssl_options));
@@ -115,6 +129,7 @@ class SecurityUpdatesCommand extends SiteCommand {
 
                     if (isset($security_advisory_level_match[1])) {
                       print ("security_advisory_level_match: " . $security_advisory_level_match[1] . "\n");
+                      $site_update_array['security_advisory_level'] = $security_advisory_level_match[1];
                     }
 
                   }
@@ -124,15 +139,22 @@ class SecurityUpdatesCommand extends SiteCommand {
                 $release_version_url = $xml->xpath("//channel/item[title/text() = '{$machine_name} {$installed_version_core}-{$installed_version_major}.{$check_minor_version}']/link/text()");
                 if (isset($release_version_url[0])) {
                   print ((string)$release_version_url[0] . "\n");
+                  $site_update_array['release_url'] = (string)$release_version_url[0];
                 }
+
 
 
               }
             }
+            $site_array['updates'][] = $site_update_array;
           }
         }
       }
     }
+
+    $all_sites_array[] = $site_array;
+
+    print_r ($all_sites_array);
 
     return;
     $this->sites()->fetch();
