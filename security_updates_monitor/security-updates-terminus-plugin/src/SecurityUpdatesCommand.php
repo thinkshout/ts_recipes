@@ -12,7 +12,7 @@ class SecurityUpdatesCommand extends SiteCommand {
    *
    * @command security-updates-report
    *
-   * @option environment Pantheon environment (default: dev)
+   * @option environment Pantheon environment
    * @option email Send a report
    * @option team Team-only filter
    * @option owner Owner filter; "me" or user UUID
@@ -288,21 +288,8 @@ class SecurityUpdatesCommand extends SiteCommand {
     print_r($all_sites_array);
     print ("\n" . "\n");
 
-    // Create table for sites that had errors
-    $all_sites_string_errors = "<h2>sites with errors</h2><table border='1'><tr><td>Site</td><td>Message</td></tr>";
-    foreach ($all_sites_array as $site_array) {
-      if (isset($site_array['message']) && $site_array['message'] != "no security updates available") {
-        $all_sites_string_errors .= "<tr>";
-        $all_sites_string_errors .= "<td>{$site_array['name']}</td>";
-        $all_sites_string_errors .= "<td>{$site_array['message']}</td>";
-        $all_sites_string_errors .= "</tr>";
-      }
-    }
-    $all_sites_string_errors .= "</table>";
-    print ($all_sites_string_errors);
-
     // Create table for sites that have security updates
-    $all_sites_string = "<h2>sites with security updates</h2><table border='1'><tr><td>Site</td><td>Module</td><td>Installed</td><td>Proposed</td><td>Releases</td></tr>";
+    $all_sites_string = "<h2>Sites with security updates</h2><table border='1'><tr><td>Site</td><td>Module</td><td>Installed</td><td>Proposed</td><td>Releases</td></tr>";
     foreach ($all_sites_array as $site_array) {
       if (!isset($site_array['message'])) {
         if (isset($site_array['updates'])) {
@@ -337,8 +324,21 @@ class SecurityUpdatesCommand extends SiteCommand {
     $all_sites_string .= "</table>";
     print ($all_sites_string);
 
+    // Create table for sites that had errors
+    $all_sites_string_errors = "<h2>Sites with errors</h2><table border='1'><tr><td>Site</td><td>Message</td></tr>";
+    foreach ($all_sites_array as $site_array) {
+      if (isset($site_array['message']) && $site_array['message'] != "no security updates available") {
+        $all_sites_string_errors .= "<tr>";
+        $all_sites_string_errors .= "<td>{$site_array['name']}</td>";
+        $all_sites_string_errors .= "<td>{$site_array['message']}</td>";
+        $all_sites_string_errors .= "</tr>";
+      }
+    }
+    $all_sites_string_errors .= "</table>";
+    print ($all_sites_string_errors);
+
     // Create table for sites that do not have security updates
-    $all_sites_string_no_updates = "<h2>sites with no security updates</h2><table border='1'><tr><td>Site</td></tr>";
+    $all_sites_string_no_updates = "<h2>Sites with no security updates</h2><table border='1'><tr><td>Site</td></tr>";
     foreach ($all_sites_array as $site_array) {
       if (isset($site_array['message']) && $site_array['message'] == "no security updates available") {
         $all_sites_string_no_updates .= "<tr>";
