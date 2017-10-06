@@ -1,8 +1,8 @@
-#Terminus plugin install
-Copy security-updates-terminus-plugin folder to ~/.terminus/plugins
-
 # Summary
 This tool is meant to show which of our sites have security updates available.
+
+#Terminus plugin install
+Copy security-updates-terminus-plugin folder to your ~/.terminus/plugins folder
 
 # TODO/Ideas
 * enable/disable update module when it's not enabled (not sure if we want to do this on live sites)
@@ -10,3 +10,32 @@ This tool is meant to show which of our sites have security updates available.
 * Automatically email results
  * Recipients could be based on security risk level (if a critical update is present, email to x and y, otherwise just to x)
 * See if we can make this work with Drupal 8 (composer) and Wordpress
+
+Usage:
+  security-updates-report [options]
+  security-updates-report terminus security-updates-report
+  security-updates-report terminus security-updates-report --team
+  security-updates-report terminus security-updates-report --owner=<user>
+  security-updates-report terminus security-updates-report --owner=me
+  security-updates-report terminus security-updates-report --org=<org>
+  security-updates-report terminus security-updates-report --org=all
+  security-updates-report terminus security-updates-report --name=<regex>
+
+Options:
+      --environment[=ENVIRONMENT]  Pantheon environment (default: dev) [default: "dev"]
+      --email[=EMAIL]              Send a report
+      --team                       Team-only filter
+      --owner[=OWNER]              Owner filter; "me" or user UUID
+      --org[=ORG]                  Organization filter; "all" or organization UUID
+      --name[=NAME]                Name filter
+  -h, --help                       Display this help message
+  -q, --quiet                      Do not output any message
+  -V, --version                    Display this application version
+      --ansi                       Force ANSI output
+      --no-ansi                    Disable ANSI output
+  -n, --no-interaction             Do not ask any interactive question
+  -y, --yes                        Answer all confirmations with "yes"
+  -v|vv|vvv, --verbose             Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Help:
+  Displays security updates for all sites
