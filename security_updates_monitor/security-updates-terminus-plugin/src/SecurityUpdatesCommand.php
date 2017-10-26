@@ -1,5 +1,6 @@
 <?php
 
+//https://github.com/drush-ops/drush/blob/7.x/commands/pm/updatestatus.pm.inc
 //use Pantheon\Terminus\Commands\TerminusCommand;
 use Pantheon\Terminus\Commands\Site\SiteCommand;
 
@@ -81,10 +82,6 @@ class SecurityUpdatesCommand extends SiteCommand {
     foreach ($sites as $site) {
 
       print "getting update details for site: " . $site['name'] . "\n"; //DEBUGGING
-//      continue; //DEBUGGING
-//      if ($site['name'] != "givingforum") {
-//        continue;
-//      }
 
       // A place to store the results for the site being processed
       $site_array = [];
@@ -107,212 +104,104 @@ class SecurityUpdatesCommand extends SiteCommand {
         continue;
       }
 
-      $command = "terminus remote:drush {$site['name']}.{$options['environment']} -- pm-updatecode --security-only -n";
+      $command = "terminus drush {$site['name']}.{$options['environment']} -- pm-updatestatus --security-only --format=php";
       $response = $this->pipe_exec($command);
 
-      if (strpos($response[1], "Drush command terminated abnormally due to an unrecoverable error") !== FALSE) {
-        $site_array['message'] = "Drush command terminated abnormally due to an unrecoverable error";
-        $all_sites_array[] = $site_array;
-        continue;
+      //looks like we get stderr in stdout so we get debug stuff in our serialized response. Quick fix for now.
+      $last_debug_line = strrpos($response[1], "Checking available update data");
+      if ($last_debug_line !== false) {
+        $last_debug_line_newline = strpos($response[1], "\n", $last_debug_line);
+        if ($last_debug_line_newline !== false) {
+          $response[1] = substr($response[1], $last_debug_line_newline);
+        }
       }
-      if (strpos($response[1], "Command pm-updatecode needs the following modules installed/enabled") !== FALSE) {
-        $site_array['message'] = "update module not enabled on this site";
-        $all_sites_array[] = $site_array;
-        continue;
+      $start_char = strpos ( $response[1] , "a:");
+      if ($start_char !== false) {
+        $response[1] = substr($response[1], $start_char );
+        $site_array['results'] = unserialize($response[1]);
       }
-      if (strpos($response[1], "This codebase is assembled with Composer instead of Drush.") !== FALSE) {
-        $site_array['message'] = "site uses Composer instead of Drush";
-        $all_sites_array[] = $site_array;
-        continue;
-      }
-      if (strpos($response[1], "No security updates available.") !== FALSE && strpos($response[1], "SECURITY UPDATE available") === FALSE) {
-        // result can say 'No security updates available.' and also include security updates hence this extra check
+      else if (strpos($response[1], "[error]") === FALSE) {
         $site_array['message'] = "no security updates available";
         $all_sites_array[] = $site_array;
         continue;
       }
-      if (strpos($response[1], "SECURITY UPDATE available") === FALSE) {
-        $site_array['message'] = "unknown error";
-        $all_sites_array[] = $site_array;
-        continue;
-      }
-
-      // Find column dimensions
-      preg_match('/.*(\bName +Installed.*Proposed.*Message\b).*/', $response[1], $match);
-      if (isset($match[0])) {
-
-        $name_start = strpos($match[0], 'Name');
-        $installed_version_start = strpos($match[0], 'Installed');
-        $proposed_version_start = strpos($match[0], 'Proposed');
-        $message_start = strpos($match[0], 'Message');
-
-        $name_length = $installed_version_start - $name_start;
-        $installed_version_length = $proposed_version_start - $installed_version_start;
-        $proposed_version_length = $message_start - $proposed_version_start;
-
-        // Grab all security updates
-        // regex below is because of situations like this
-        //  Name    Installed Version  Proposed version  Message
-        //  Drupal  8.3.1              8.4.0             Do not update via Drush. See:
-        //                                               https://pantheon.io/docs/articles
-        //                                               /sites/code/applying-upstream-upd
-        //                                               ates/ (SECURITY UPDATE available)
-        preg_match_all('/.*Do not update via Drush..*|.*(?<!ates\/ \()SECURITY UPDATE available.*/', $response[1], $matches);
-
-        if (!isset($matches[0])) {
-          $site_array['message'] = "error, unexpected security notifications format";
+      else {
+        if (strpos($response[1], "Drush command terminated abnormally due to an unrecoverable error") !== FALSE) {
+          $site_array['message'] = "Drush command terminated abnormally due to an unrecoverable error";
           $all_sites_array[] = $site_array;
           continue;
         }
+        else if (strpos($response[1], "The drush command 'pm-updatestatus' could not be found.") !== FALSE) {
+          $site_array['message'] = "site uses incorrect drush version? (pm-updatestatus could not be found)";
+          $all_sites_array[] = $site_array;
+          continue;
+        }
+        else {
+          $site_array['message'] = "unknown error";
+          $all_sites_array[] = $site_array;
+          continue;
+        }
+      }
 
-        foreach ($matches[0] as $match) {
+      foreach ($site_array['results'] as &$module) {
+        foreach ($module['security updates'] as $release) {
 
-          // A place to store the results for the security update for the site being processed
-          $site_update_array = [];
+          // A place to store the security advisories for the module being processed
+          $security_advisory = [];
 
-          // Get or create machine name
-          $name = trim(substr($match, $name_start, $name_length));
-          if (empty($name)) {
-            $site_update_array['message'] = "name not detected";
-            $site_array['updates'][] = $site_update_array;
-            continue;
-          }
-          preg_match('/.*\((.*)\)/', $name, $machine_name_match);
-          if (isset($machine_name_match[1])) {
-            $machine_name = $machine_name_match[1];
-          }
-          else {
-            $machine_name = strtolower(str_replace(' ', '', $name));
-          }
-          $site_update_array['machine_name'] = $machine_name;
+          // find changelog description and parse it for security advisory link and risk level
+          $release_content = file_get_contents($release['release_link'], FALSE, stream_context_create($ssl_options));
 
-          // Get installed version
-          $installed_version = trim(substr($match, $installed_version_start, $installed_version_length));
-          // matches 8.3.1 or 7.x-3.1
-          preg_match('/([^-]+)-(\d+)+\.*(\d+)|(\d+).(\d+)+\.*(\d+)/', $installed_version, $version_match);
-          if (!$version_match) {
-            $site_update_array['message'] = "minor version not detected";
-            $site_array['updates'][] = $site_update_array;
-            continue;
-          }
-          if (!isset($version_match[4])) {
-            $installed_version_core = $version_match[1];
-            $installed_version_major = $version_match[2];
-            $installed_version_minor = $version_match[3];
-          }
-          else {
-            $installed_version_core = $version_match[4];
-            $installed_version_major = $version_match[5];
-            $installed_version_minor = $version_match[6];
-          }
+          if (isset($release_content)) {
 
-          $site_update_array['installed_version'] = $installed_version;
-
-          // Get proposed version
-          $proposed_version = trim(substr($match, $proposed_version_start, $proposed_version_length));
-          preg_match('/([^-]+)-(\d+)+\.*(\d+)|(\d+).(\d+)+\.*(\d+)/', $proposed_version, $version_match);
-          if (!isset($version_match[4])) {
-            $proposed_version_core = $version_match[1];
-            $proposed_version_major = $version_match[2];
-            $proposed_version_minor = $version_match[3];
-          }
-          else {
-            $proposed_version_core = $version_match[4];
-            $proposed_version_major = $version_match[5];
-            $proposed_version_minor = $version_match[6];
-          }
-          $site_update_array['proposed_version'] = $proposed_version;
-
-          // We don't support a major version change yet, for 8.3.1 -> 8.4.1 it would be nice to add this.
-          if ($proposed_version_major != $installed_version_major) {
-            $site_update_array['message'] = "major version update detected";
-            $site_array['updates'][] = $site_update_array;
-            continue;
-          }
-
-          // find url for project changelog rss page on releases page for drupal.org project
-          $releases_url = "https://www.drupal.org/project/{$machine_name}/releases";
-          $releases_content = file_get_contents($releases_url, FALSE, stream_context_create($ssl_options));
-          preg_match('/<div id="feeds">.*<a href="([^ ]*)"/', $releases_content, $releases_url_match);
-
-          // Can't find changelog rss page url
-          if (!isset($releases_url_match[1])) {
-            $site_update_array['message'] = "unable to find project changelog rss page";
-            $site_array['updates'][] = $site_update_array;
-            continue;
-          }
-          $site_update_array['releases_url'] = $releases_url;
-
-          // Get content for changelog rss page
-          $releases_rss_content = file_get_contents($releases_url_match[1], FALSE, stream_context_create($ssl_options));
-          $xml = new SimpleXMLElement($releases_rss_content);
-
-          // loop through minor versions (current + 1 to new)
-          for ($check_minor_version = $installed_version_minor + 1; $check_minor_version <= $proposed_version_minor; $check_minor_version++) {
-
-            // A place to store the results for the minor version of the security update for the site being processed
-            $site_update_version_array = [];
-
-            // find url of release
-            $release_version_url = $xml->xpath("//channel/item[title/text() = '{$machine_name} {$installed_version_core}-{$installed_version_major}.{$check_minor_version}']/link/text()");
-            if (isset($release_version_url[0])) {
-              $site_update_version_array['release_url'] = (string) $release_version_url[0];
-            }
-
-            // find changelog description and parse it for security advisory link and risk level
-            $item_description = $xml->xpath("//channel/item[title/text() = '{$machine_name} {$installed_version_core}-{$installed_version_major}.{$check_minor_version}']/description/text()");
-            if (isset($item_description[0][0])) {
-
-              // find security advisory url in changelog description
-              // TODO: there can probably be more than one security advisory per release, catch all, not one.
-              $item_description = html_entity_decode($item_description[0][0]);
-              preg_match('/<a href=\"(.*)\" .*>SA-.*<\/a>/', $item_description, $security_advisory_url_match);
-              if (isset($security_advisory_url_match[1])) {
-                $site_update_version_array['security_advisory_url'] = $security_advisory_url_match[1];
-
-                // find security risk level on security advisory page
-                $sa_url_contents = file_get_contents($security_advisory_url_match[1], FALSE, stream_context_create($ssl_options));
-                preg_match('/<a href=\"https:\/\/www\.drupal\.org\/security-team\/risk-levels\">.*\">(.*)<\/span>/', $sa_url_contents, $security_advisory_level_match);
-                if (isset($security_advisory_level_match[1])) {
-                  $site_update_version_array['security_advisory_level'] = trim($security_advisory_level_match[1]);
-                }
+            // find security advisory url in changelog description
+            // TODO: there can probably be more than one security advisory per release, catch all.
+            preg_match('/<a href=\"(.*)\" .*>.*SA-.*<\/a>/', $release_content, $security_advisory_url_match);
+            if (isset($security_advisory_url_match[1])) {
+              $security_advisory['security_advisory_version'] = $release['version'];
+              $security_advisory['security_advisory_url'] = $security_advisory_url_match[1];
+              if (strpos($security_advisory['security_advisory_url'], 'drupal.org') === false) {
+                $security_advisory['security_advisory_url'] = "https://www.drupal.org" . $security_advisory['security_advisory_url'];
               }
+              // find security risk level on security advisory page
+              $sa_url_contents = file_get_contents($security_advisory['security_advisory_url'], FALSE, stream_context_create($ssl_options));
+              preg_match('/<a href=\"https:\/\/www\.drupal\.org\/security-team\/risk-levels\">.*\">(.*)<\/span>/', $sa_url_contents, $security_advisory_level_match);
+              if (isset($security_advisory_level_match[1])) {
+                $security_advisory['security_advisory_level'] = trim($security_advisory_level_match[1]);
+              }
+              else {
+                $security_advisory['security_advisory_level'] = "unknown";
+              }
+              $module['security_advisories'][] = $security_advisory;
             }
-            $site_update_array['versions'][] = $site_update_version_array;
-          } // END loop through minor versions
-          $site_array['updates'][] = $site_update_array;
+          }
         }
       }
       $all_sites_array[] = $site_array;
     }
-    print_r($all_sites_array);
-    print ("\n" . "\n");
 
     // Create table for sites that have security updates
-    $all_sites_string = "<h2>Sites with security updates</h2><table border='1'><tr><td>Site</td><td>Module</td><td>Installed</td><td>Proposed</td><td>Releases</td></tr>";
+    $all_sites_string = "<h2>Sites with security updates</h2><table border='1'><tr><td>Site</td><td>Module</td><td>Installed</td><td>Proposed</td><td>Security Advisories</td></tr>";
     foreach ($all_sites_array as $site_array) {
       if (!isset($site_array['message'])) {
-        if (isset($site_array['updates'])) {
-          foreach ($site_array['updates'] as $update) {
+        if (isset($site_array['results'])) {
+          foreach ($site_array['results'] as $module) {
             $all_sites_string .= "<tr>";
             $all_sites_string .= "<td>{$site_array['name']}</td>";
-            $all_sites_string .= "<td>{$update['machine_name']}</td>";
-            $all_sites_string .= "<td>{$update['installed_version']}</td>";
-            $all_sites_string .= "<td>{$update['proposed_version']}</td>";
-            if (isset($update['versions'])) {
+            $all_sites_string .= "<td>{$module['name']}</td>";
+            if (isset($module['existing_version'])) {$all_sites_string .= "<td>{$module['existing_version']}</td>";}
+            if (isset($module['recommended'])) {$all_sites_string .= "<td>{$module['recommended']}</td>";}
+            if (isset($module['security_advisories'])) {
               $all_sites_string .= "<td>";
               $counter = 0;
-              foreach ($update['versions'] as $version) {
-                if (isset($version['release_url'])) {
-                  $counter++;
-                  $release_version = substr($version['release_url'], strrpos($version['release_url'], "/", -1) + 1);
-                  $security_advisory = "";
-                  if (isset($version['security_advisory_url']) && isset($version['security_advisory_level'])) {
-                    $security_advisory = " (<a href='{$version['security_advisory_url']}'>{$version['security_advisory_level']}</a>)";
-                  }
-                  if ($counter > 1) {$all_sites_string .= " / ";}
-                  $all_sites_string .= "<a href='{$version['release_url']}'>{$release_version}</a>{$security_advisory}";
+              foreach ($module['security_advisories'] as $security_advisory) {
+                $counter++;
+                $security_advisory_string = "";
+                if (isset($security_advisory['security_advisory_url']) && isset($security_advisory['security_advisory_level'])) {
+                  $security_advisory_string = "<a href='{$security_advisory['security_advisory_url']}'>{$security_advisory['security_advisory_level']}</a>";
                 }
+                if ($counter > 1) {$all_sites_string .= " / ";}
+                $all_sites_string .= $security_advisory_string;
               }
               $all_sites_string .= "</td>";
             }

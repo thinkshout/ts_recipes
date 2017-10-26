@@ -1,15 +1,15 @@
 # Summary
-This tool is meant to show which of our sites have security updates available.
+This tool is meant to show which of our sites have security updates available
+for drupal core and contrib projects.
 
 #Terminus plugin install
 Copy security-updates-terminus-plugin folder to your ~/.terminus/plugins folder
 
 # TODO/Ideas
 * enable/disable update module when it's not enabled (not sure if we want to do this on live sites)
-* Make output look nice
+* Make output look nicer
 * Automatically email results
  * Recipients could be based on security risk level (if a critical update is present, email to x and y, otherwise just to x)
-* See if we can make this work with Drupal 8 (composer) and Wordpress
 
 Usage:
   security-updates-report [options]
