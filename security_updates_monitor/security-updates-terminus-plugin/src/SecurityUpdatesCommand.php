@@ -179,6 +179,7 @@ class SecurityUpdatesCommand extends SiteCommand {
       }
       $all_sites_array[] = $site_array;
     }
+    unset($module);
 
     // Create table for sites that have security updates
     $all_sites_string = "<h2>Sites with security updates</h2><table border='1'><tr><td>Site</td><td>Module</td><td>Installed</td><td>Proposed</td><td>Security Advisories</td></tr>";
@@ -211,7 +212,6 @@ class SecurityUpdatesCommand extends SiteCommand {
       }
     }
     $all_sites_string .= "</table>";
-    print ($all_sites_string);
 
     // Create table for sites that had errors
     $all_sites_string_errors = "<h2>Sites with errors</h2><table border='1'><tr><td>Site</td><td>Message</td></tr>";
@@ -224,7 +224,6 @@ class SecurityUpdatesCommand extends SiteCommand {
       }
     }
     $all_sites_string_errors .= "</table>";
-    print ($all_sites_string_errors);
 
     // Create table for sites that do not have security updates
     $all_sites_string_no_updates = "<h2>Sites with no security updates</h2><table border='1'><tr><td>Site</td></tr>";
@@ -236,17 +235,18 @@ class SecurityUpdatesCommand extends SiteCommand {
       }
     }
     $all_sites_string_no_updates .= "</table>";
-    print ($all_sites_string_no_updates);
 
-//    $to = 'invalid'; // comma separated
-//    $subject = 'Security Updates Report';
-//    $message = '<html><body>{$all_sites_string}</body></html>';
-//    $headers[] = 'MIME-Version: 1.0';
-//    $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-//    // Additional headers
-//    // $headers[] = 'To: Invalid <invalid.com>, Invalid <invalid.com>';
-//    $headers[] = 'From: Invalid <invalid.com>';
-//    mail($to, $subject, $message, implode("\r\n", $headers));
+    print ($all_sites_string . $all_sites_string_errors . $all_sites_string_no_updates);
+
+    if (isset($options['email'])) {
+      $to = $options['email']; // comma separated
+      $subject = 'Security Updates Report';
+      $message = "<html><body>{$all_sites_string}{$all_sites_string_errors}{$all_sites_string_no_updates}</body></html>";
+      $headers[] = 'MIME-Version: 1.0';
+      $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+      $headers[] = 'From: Security Updates Report<>';
+      mail($to, $subject, $message, implode("\r\n", $headers));
+    }
   }
 
   function pipe_exec($cmd, $input = '') {
