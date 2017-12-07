@@ -1,0 +1,5 @@
+name: Teaching Tolerance code for administrative functionality
+type: module
+description: Home for config necessary for TT administration of the site.
+core: 8.x
+package: Teaching Tolerance

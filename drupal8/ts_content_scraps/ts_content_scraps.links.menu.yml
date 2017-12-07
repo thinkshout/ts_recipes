@@ -1,0 +1,6 @@
+tt_admin.config.custom_text:
+  title: 'Custom Text Configuration'
+  description: "A place to configure little bits of content that appear on the site, like error messages or labels, that can't be configured elsewhere."
+  route_name: ts_content_scraps.config.custom_text
+  parent: system.admin_content
+  weight: 10

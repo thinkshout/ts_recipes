@@ -1,0 +1,7 @@
+ts_content_scraps.config.custom_text:
+  path: '/admin/config/content_scraps'
+  defaults:
+    _form: '\Drupal\ts_content_scraps\Form\CustomTextForm'
+    _title: 'Misc Site Content'
+  requirements:
+    _permission: 'administer nodes'
