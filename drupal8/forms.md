@@ -128,3 +128,26 @@ The class name for the form for each operation (add, edit, delete, etc.) can be 
 },
 ```
 Alternatively, the form class can be set from [hook_entity_type_build()](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21entity.api.php/function/hook_entity_type_build/8.2.x).
+
+## Flood control
+
+While reCAPTCHA, Honeypot, and other modules are useful for preventing spam,
+sometimes you need another layer of protection to prevent being DOS'd.
+
+Drupal 8 has a really easy to use flood service that you can throw into any
+form to prevent the number of submissions from a specific IP address.
+
+First, add a flood check to the form validate method like so:
+```php
+$max_per_hour = 10;
+if (!\Drupal::service('flood')->isAllowed('my_module.my_unique_key', $max_per_hour)) {
+  $form_state->setError($form, $this->t('You have submitted the form too many times in the last hour. Please wait and try again later.'));
+  return;
+}
+```
+And in your submit method, increment the flood counter:
+```php
+$this->flood->register('my_module.my_unique_key');
+```
+If may be useful to check certain user permissions or roles before using flood,
+to prevent blocking real users.
