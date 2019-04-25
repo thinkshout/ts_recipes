@@ -41,7 +41,7 @@ In the theme:
 
 Test to see if it fails:
 
-- Host this work on `https`. Try turning off the JavaScript in the browser, fill out the form, and hit save. If a reCaptcha error appears, it's set up correctly.
+- Host this work on `https`. A multidev will do the trick. Try turning off the JavaScript in the browser, fill out the form, and hit save. If a reCaptcha error appears, it's set up correctly.
 
 **Please note -** 
 
