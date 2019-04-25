@@ -39,6 +39,10 @@ In the theme:
 }
 ```
 
+Test to see if it fails:
+
+- Host this work on `https`. Try turning off the JavaScript in the browser, fill out the form, and hit save. If a reCaptcha error appears, it's set up correctly.
+
 **Please note -** 
 
 The recaptcha element will be invisible but present for all anonymous visitors, i.e. it will not be testable if logged in. 
