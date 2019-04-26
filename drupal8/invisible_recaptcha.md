@@ -1,6 +1,7 @@
 # Inivisible reCapcha
 
 Use the reCaptcha drupal module: https://www.drupal.org/project/recaptcha
+
 Install the invisible recaptcha patch: https://www.drupal.org/project/recaptcha/issues/2852269#comment-13003893
 
 Set up on the reCaptcha side: 
