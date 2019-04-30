@@ -1,10 +1,26 @@
-Based on W3's best practices for accessible navs where the top level items are links, but also have flyout dropdowns. 
-https://www.w3.org/WAI/tutorials/menus/flyout/#flyoutnavkbbtn
-See in SPLC's main navigation on desktop and mobile. 
+ ### Accessible Flyout Navigation on Desktop and Mobile
+_Example is in Drupal 7/8, but approach is tech agnostic_
 
+Based on [W3's best practices](https://www.w3.org/WAI/tutorials/menus/flyout/#flyoutnavkbbtn
+) for accessible navs where the top level items are links, but also have flyouts/dropdowns.
+
+###### Summary: the JS function drops this markup with the correct label after each menu item that has flyouts/dropdowns. It targets the 'expanded' class, so  update accordingly. Theme the .arrow to match the design. In this example, it's a chevron pointing down.
+
+```
+<button>
+  <span class="arrow">
+    <span class="visually-hidden">[the name of this menu item]'s submenu</span>
+  </span>
+</button>
+```
+
+###### Then, the JS adds an 'open' class to the top menu item when the button is clicked (with a keyboard or mouse). The theming then keeps the dropdown appearing as long as the 'open' class is present.
+
+_See in SPLC's main navigation on desktop and mobile for live sample._
 
 ** JS Functions: **
 
+```
   // Toggles the mobile nav open and closed with click or keyboard:
   toggleNav: function() {
     $('.nav-toggle').click(function() {
@@ -53,19 +69,24 @@ See in SPLC's main navigation on desktop and mobile.
       axsMenuItem.removeClass('open');
     });
   },
-  
- this.toggleNav(); 
+
+ this.toggleNav();
  this.accessibleNav();
 
-Theming will be specific per project, but this should help give you an idea of how the focus and hover states can be addressed. This would be cleaner if the <a> tags were targetted instead of the <li>, then the focus and hover would be on the same element. 
-** SASS: **
+```
 
+Theming will be specific per project, but this should help give you an idea of how the focus and hover states can be addressed. This would be cleaner if the `<a>` tags were targeted instead of the `<li>`, then the focus and hover would be on the same element.
+
+** SASS: **
+```
+// Focus/hover state for top level menu items
 %menu-theming {
-  background: $brick-red;
+  background: $background-color;
   color: $white;
   @include transition(all 0.1s);
 }
 
+// Themes button that triggers dropdown. In this case it's a chevron
 %menu-theming-chevron {
   @extend %splc-chevron-up;
   color: $white;
@@ -74,6 +95,7 @@ Theming will be specific per project, but this should help give you an idea of h
   margin-left: 0.5em;
 }
 
+// Displays flyout/dropdown menu
 %show-me-the-menu {
   // Show the second level
   visibility: visible;
@@ -82,7 +104,8 @@ Theming will be specific per project, but this should help give you an idea of h
 
 }
 
-//From W3 best practices. THIS IS BUILT INTO D8. You can just use the class without defining it. 
+
+// Visually hides an element, while keeping it accessible to screen readers. From W3 best practices. THIS IS BUILT INTO D8. You can just use the class without defining it.
 .visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -94,35 +117,45 @@ Theming will be specific per project, but this should help give you an idea of h
   width: 1px;
 }
 
-//Puts the chevron on top of the nav item, makes space for the chevron in the <a> tag so the hover looks correct
+//Puts the button/chevron inside the nav item, makes space for the chevron in the <a> tag so the hover looks correct
 #main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded > a {
   margin-right: -1.5rem;
   padding-right: 2rem;
   z-index: 1;
 }
 
-//Adds red background theming when menu item flyout is open
+//Adds top level menu theming when menu item flyout is open
 #main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded.open > a,
-#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded:hover > a,
-#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded a:focus {
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded:hover > a {
   @extend %menu-theming;
 }
 
+// Displays submenu when hovering or tabbing to the button and hitting return
 #main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded:hover > ul.menu,
-#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded a:focus + ul.menu,
-#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded a.open + ul.menu,
 #main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded.open ul.menu {
   @extend %show-me-the-menu;
 }
 
 //Makes chevron white on focus or hover
-#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded a:focus + button,
 #main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded:hover,
 #main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded.open {
   span.arrow:before { color: $white; }
 }
 
-// This span is added in the JS
+
+// Makes submenu visible
+#main-navigation #block-menu_block-1  .menu-block-wrapper > ul.menu > li.open > ul.menu {
+  display: block;
+  opacity 1;
+}
+
+```
+
+### Here are more generic styles that might be helpful, but key element targeting is done above.
+
+```
+
+// This span is added in the JS. Sets base styles
 span.arrow {
   color: $white;
   @include mq(md) { color: $brick-red; }
@@ -176,3 +209,64 @@ span.arrow {
     }
   }
 }
+
+// Second level list items
+#main-navigation #block-menu_block-1  .menu-block-wrapper > ul.menu > li > ul.menu {
+  background: $brick-red;
+  opacity: 0;
+  padding-bottom: 1em;
+  position: absolute;
+  top: 2.4em;
+  left: 1px;
+  width: 140%;
+  visibility: hidden;
+  z-index: 10;
+
+  @include mq(t) {
+    background: $dune;
+    display: none;
+    position: relative;
+    opacity: 1;
+    left: 0;
+    top: 0;
+    width: auto;
+    visibility: visible;
+  }
+
+  @include mq(m) {
+    background: $background-color;
+    display: none;
+    left: 0;
+    opacity: 1;
+    position: relative;
+    top: 0;
+    width: auto;
+    visibility: visible;
+  }
+
+  & li {
+    display: list-item;
+    list-style: none;
+  }
+
+  & li a {
+    color: $white;
+    display: block;
+    font-family: $heading-font;
+    padding: 0.5em;
+  }
+
+  & li a:hover,
+  & li a:focus {
+    color: $hocus-color;
+
+    @include mq(t) {
+      color: $white;
+    }
+
+    @include mq(m) {
+      color: $white;
+    }
+  }
+}
+```
