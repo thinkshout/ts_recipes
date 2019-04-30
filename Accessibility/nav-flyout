@@ -4,7 +4,7 @@ See in SPLC's main navigation on desktop and mobile.
 
 ** JS Functions: **
 
-  // Toggles the mobile nav open and closed:
+  // Toggles the mobile nav open and closed with click or keyboard:
   toggleNav: function() {
     $('.nav-toggle').click(function() {
       $(this).toggleClass('open');
@@ -52,6 +52,9 @@ See in SPLC's main navigation on desktop and mobile.
       axsMenuItem.removeClass('open');
     });
   },
+  
+ this.toggleNav(); 
+ this.accessibleNav();
 
 Theming will be specific per project, but this should help give you an idea of how the focus and hover states can be addressed. This would be cleaner if the <a> tags were targetted instead of the <li>, then the focus and hover would be on the same element. 
 ** SASS: **
