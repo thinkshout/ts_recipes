@@ -7,7 +7,7 @@ Based on [W3's best practices](https://www.w3.org/WAI/tutorials/menus/flyout/#fl
 ###### Summary: the JS function drops this markup with the correct label after each menu item that has flyouts/dropdowns. It targets the 'expanded' class, so  update accordingly. Theme the .arrow to match the design. In this example, it's a chevron pointing down.
 
 ```
-<button>
+<button aria-expanded="false">
   <span class="arrow">
     <span class="visually-hidden">[the name of this menu item]'s submenu</span>
   </span>
@@ -21,26 +21,10 @@ _See in SPLC's main navigation on desktop and mobile for live sample._
 ** JS Functions: **
 
 ```
-  // Toggles the mobile nav open and closed with click or keyboard:
-  toggleNav: function() {
-    $('.nav-toggle').click(function() {
-      $(this).toggleClass('open');
-      event.preventDefault();
-      $('#main-navigation, #secondary-nav').slideToggle(200);
-    });
-
-    $('#main-navigation #block-menu_block-1 li.expanded button').on("click", function(event) {
-      $(this).parent('li.expanded').find('ul.menu').slideToggle();
-    });
-  },
-
-  // Adds aria labels and dropdown chevron buttons to menu items with flyouts (li.expanded)
+  // Adds aria labels and dropdown chevron buttons to menu items with flyouts (li.expanded button)
   accessibleNav: function() {
     var axsMenuItem = $('.menu-name-main-menu li.expanded');
-    axsMenuItem.attr({
-      'aria-haspopup':'true',
-      'aria-expanded':'false'
-    });
+    $('.menu-name-main-menu li.expanded button').attr('aria-expanded','false');
 
     // Adds the button and label after each flyout menu item  
     axsMenuItem.each(function() {
@@ -49,24 +33,16 @@ _See in SPLC's main navigation on desktop and mobile for live sample._
       activatingA.after(btn);
 
       // Triggers flyouts on mouse click or return button press
-      $(this).find('button').on("click",  function(event){
+      $(this).find('button').on('click', function(event){
         event.preventDefault();
-        var a = $(this);
-        if (a.parents('li.expanded')) {
-          a.parents('li.expanded').toggleClass('open');
-          a.parents('a').attr('aria-expanded', "true");
-          a.parents('button').attr('aria-expanded', "true");
-        } else {
-          a.parents('li').removeClass('open');
-          a.parents('a').attr('aria-expanded', "false");
-          a.parents('button').attr('aria-expanded', "false");
-        }
+        var li = $(this).parents('li.expanded').toggleClass('open');
+        $(this).attr('aria-expanded', li.hasClass('open') ? 'true' : 'false');
       });
     });
 
     // Closes flyout menu items when you tab to the next top level menu item
     $('.menu-block-wrapper > ul.menu > li > a').on('focus', function(){
-      axsMenuItem.removeClass('open');
+      axsMenuItem.removeClass('open').find('button').attr('aria-expanded', 'false');
     });
   },
 
@@ -153,8 +129,25 @@ Theming will be specific per project, but this should help give you an idea of h
 
 ### Here are more generic styles that might be helpful, but key element targeting is done above.
 
+
+** JS **
+```
+// Toggles the mobile nav open and closed with click or keyboard:
+toggleNav: function() {
+  $('.nav-toggle').click(function() {
+    $(this).toggleClass('open');
+    event.preventDefault();
+    $('#main-navigation, #secondary-nav').slideToggle(200);
+  });
+
+  $('#main-navigation #block-menu_block-1 li.expanded button').on("click", function(event) {
+    $(this).parent('li.expanded').find('ul.menu').slideToggle();
+  });
+},
 ```
 
+** SASS **
+```
 // This span is added in the JS. Sets base styles
 span.arrow {
   color: $white;
