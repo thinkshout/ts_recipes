@@ -1,4 +1,4 @@
-Drupal 7/8
+* Drupal 7/8
 Adds labels and href values to Add This to remove accessibility errors. 
 
 /**
