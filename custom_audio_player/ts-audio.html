@@ -1,0 +1,9 @@
+// Custom player example code.
+<a data-audio-clip href="{{ file_url(content.field_document.0["#files"].0.file.uri.value) }}">
+	{{ name }}
+</a>
+
+// Keep native player for accessibility reasons.
+<div class="native-audio-player">
+	{{ content|without('name', 'field_duration') }}
+</div>
