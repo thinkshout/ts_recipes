@@ -1,0 +1,494 @@
+[
+    {
+        "name": "-Personal",
+        "color": "#FFA04DFF",
+        "productivityRating": 1,
+        "ruleData": null,
+        "children": [
+            {
+                "name": "Email",
+                "color": "#FF514DFF",
+                "productivityRating": 1,
+                "ruleData": "Cj8IAhI7EjkICBoKIggKBndlYlVSTCIlCiMKIWh0dHBzOi8vbWFpbC5nb29nbGUuY29tL21haWwvdS8xLyoCAQI=",
+                "children": []
+            }
+        ]
+    },
+    {
+        "name": "-ThinkShout",
+        "color": "#C74DFFFF",
+        "productivityRating": 1,
+        "ruleData": null,
+        "children": [
+            {
+                "name": "1:1",
+                "color": "#C3FF4DFF",
+                "productivityRating": 1,
+                "ruleData": "CkMIAhI/Ej0ICBoKIggKBndlYlVSTCIpCicKJWh0dHBzOi8vdGhpbmtzaG91dC5sYXR0aWNlaHEuY29tLzE6MXMqAgEC",
+                "children": []
+            },
+            {
+                "name": "15/5",
+                "color": "#784DFFFF",
+                "productivityRating": 1,
+                "ruleData": "CkYIAhJCEkAICBoKIggKBndlYlVSTCIsCioKKGh0dHBzOi8vdGhpbmtzaG91dC5sYXR0aWNlaHEuY29tL3VwZGF0ZXMqAgEC",
+                "children": []
+            },
+            {
+                "name": "Bene",
+                "color": "#524DFFFF",
+                "productivityRating": 1,
+                "ruleData": "CiAIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEYmVuZQ==",
+                "children": []
+            },
+            {
+                "name": "Calendar",
+                "color": "#FF4DE7FF",
+                "productivityRating": 1,
+                "ruleData": "CkQIAhJAEj4ICBoKIggKBndlYlVSTCIqCigKJmh0dHBzOi8vY2FsZW5kYXIuZ29vZ2xlLmNvbS9jYWxlbmRhci9yKgIBAg==",
+                "children": []
+            },
+            {
+                "name": "Email",
+                "color": "#FF4D98FF",
+                "productivityRating": 1,
+                "ruleData": "ClIIAhJOEkwIBxoJIgcKBXRpdGxlIjkKNwo1SW5ib3ggKCopIC0gb2xpdmllckB0aGlua3Nob3V0LmNvbSAtIFRoaW5rU2hvdXQgTWFpbCoqAgEC",
+                "children": []
+            },
+            {
+                "name": "Forecast",
+                "color": "#BFFF4DFF",
+                "productivityRating": 1,
+                "ruleData": "CjUIAhIxEi8ICBoKIggKBndlYlVSTCIbChkKF2h0dHBzOi8vZm9yZWNhc3RhcHAuY29tKgIBAg==",
+                "children": []
+            },
+            {
+                "name": "Harvest",
+                "color": "#FFF04DFF",
+                "productivityRating": 1,
+                "ruleData": "Cj8IAhI7EjkICBoKIggKBndlYlVSTCIlCiMKIWh0dHBzOi8vdGhpbmtzaG91dC5oYXJ2ZXN0YXBwLmNvbSoCAQI=",
+                "children": []
+            },
+            {
+                "name": "RedHen",
+                "color": "#8DFF4DFF",
+                "productivityRating": 1,
+                "ruleData": "CiIIAhIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGcmVkaGVu",
+                "children": []
+            },
+            {
+                "name": "Reviews",
+                "color": "#FF9C4DFF",
+                "productivityRating": 1,
+                "ruleData": "CkYIAhJCEkAICBoKIggKBndlYlVSTCIsCioKKGh0dHBzOi8vdGhpbmtzaG91dC5sYXR0aWNlaHEuY29tL3Jldmlld3MqAgEC",
+                "children": []
+            },
+            {
+                "name": "Surveys",
+                "color": "#FFEB4DFF",
+                "productivityRating": 1,
+                "ruleData": "CkYIAhJCEkAICBoKIggKBndlYlVSTCIsCioKKGh0dHBzOi8vdGhpbmtzaG91dC5sYXR0aWNlaHEuY29tL3N1cnZleXMqAgEC",
+                "children": []
+            },
+            {
+                "name": "TA",
+                "color": "#FF4DBDFF",
+                "productivityRating": 1,
+                "ruleData": "CpIBCAISRgpECAESHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBHRlY2gSIhIgCGMaDCIKCghrZXl3b3JkcyIOCgwKCmFyY2hpdGVjdHMSRgpECAESHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBHRlY2gSIhIgCGMaDCIKCghrZXl3b3JkcyIOCgwKCmxlYWRlcnNoaXA=",
+                "children": []
+            },
+            {
+                "name": "Zenefits",
+                "color": "#74FF4DFF",
+                "productivityRating": 1,
+                "ruleData": "CjkIAhI1EjMICBoKIggKBndlYlVSTCIfCh0KG2h0dHBzOi8vc2VjdXJlLnplbmVmaXRzLmNvbSoCAQI=",
+                "children": []
+            }
+        ]
+    },
+    {
+        "name": "AAAS",
+        "color": "#95FF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CpABCAISRgpECAESGxIZCGMaDCIKCghrZXl3b3JkcyIHCgUKA2FhYRIjEiEIYxoMIgoKCGtleXdvcmRzIg8KDQoLc2Nob2xhcnNoaXASHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGFhYXMSJhIkCGMaDCIKCghrZXl3b3JkcyISChAKDmFhYXNjaG9sYXJzaGlw",
+        "children": []
+    },
+    {
+        "name": "CA12",
+        "color": "#4DFFF2FF",
+        "productivityRating": 1,
+        "ruleData": "CmIIAhJACj4IARIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGY2FyYm9uEhoSGAhjGgwiCgoIa2V5d29yZHMiBgoECgIxMhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEY2ExMg==",
+        "children": []
+    },
+    {
+        "name": "CABC",
+        "color": "#4DBCFFFF",
+        "productivityRating": 1,
+        "ruleData": "CokBCAISRgpECAESHxIdCGMaDCIKCghrZXl3b3JkcyILCgkKB2Nhc2NhZGUSHxIdCGMaDCIKCghrZXl3b3JkcyILCgkKB2JpY3ljbGUSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGNhYmMSHxIdCGMaDCIKCghrZXl3b3JkcyILCgkKB2Nhc2NhZGU=",
+        "children": []
+    },
+    {
+        "name": "CALC",
+        "color": "#4DFFA3FF",
+        "productivityRating": 1,
+        "ruleData": "CmcIAhJFCkMIARIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIY2FtcGFpZ24SHRIbCGMaDCIKCghrZXl3b3JkcyIJCgcKBWxlZ2FsEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRjYWxj",
+        "children": []
+    },
+    {
+        "name": "CFRR",
+        "color": "#4D6DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CqkBCAISagpoCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBmNlbnRlchIkEiIIYxoMIgoKCGtleXdvcmRzIhAKDgoMcmVwcm9kdWN0aXZlEh4SHAhjGgwiCgoIa2V5d29yZHMiCgoICgZyaWdodHMSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGNmcnISGxIZCGMaDCIKCghrZXl3b3JkcyIHCgUKA2Nycg==",
+        "children": []
+    },
+    {
+        "name": "CHLS",
+        "color": "#4DFFEEFF",
+        "productivityRating": 1,
+        "ruleData": "CmEIAhIhEh8IYxoMIgoKCGtleXdvcmRzIg0KCwoJY2hhbmdlbGFiEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRjbHM4EhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRjaGxz",
+        "children": []
+    },
+    {
+        "name": "CORI",
+        "color": "#FF4DE3FF",
+        "productivityRating": 1,
+        "ruleData": "CkUIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEY29yaRIjEiEIYxoMIgoKCGtleXdvcmRzIg8KDQoLcml2ZXJrZWVwZXI=",
+        "children": []
+    },
+    {
+        "name": "COTR",
+        "color": "#CB4DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CmcIAhJFCkMIARIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIY29sb3JhZG8SHRIbCGMaDCIKCghrZXl3b3JkcyIJCgcKBXRydXN0EhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRjb3Ry",
+        "children": []
+    },
+    {
+        "name": "COVA",
+        "color": "#7C4DFFFF",
+        "productivityRating": 1,
+        "ruleData": "Cq8BCAISZwplCAESHxIdCGMaDCIKCghrZXl3b3JkcyILCgkKB2NlbnRyYWwSHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBm9yZWdvbhIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIdmlzaXRvcnMSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGNvdmESJBIiCGMaDCIKCghrZXl3b3JkcyIQCg4KDGNvdmFtZWV0aW5ncw==",
+        "children": []
+    },
+    {
+        "name": "CSIS",
+        "color": "#FF4D94FF",
+        "productivityRating": 1,
+        "ruleData": "CiAIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEY3Npcw==",
+        "children": []
+    },
+    {
+        "name": "DEMA",
+        "color": "#FF554DFF",
+        "productivityRating": 1,
+        "ruleData": "CkIIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEZGVtYRIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIbWFyaWxsYWM=",
+        "children": []
+    },
+    {
+        "name": "DEMO",
+        "color": "#FF4D66FF",
+        "productivityRating": 1,
+        "ruleData": "CiEIAhIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFZGVtb3M=",
+        "children": []
+    },
+    {
+        "name": "Enterprise Community Partners",
+        "color": "#FFF44DFF",
+        "productivityRating": 1,
+        "ruleData": "Ck8IAhJLCkkIARIiEiAIYxoMIgoKCGtleXdvcmRzIg4KDAoKZW50ZXJwcmlzZRIhEh8IYxoMIgoKCGtleXdvcmRzIg0KCwoJY29tbXVuaXR5",
+        "children": []
+    },
+    {
+        "name": "ENTR",
+        "color": "#FFA44DFF",
+        "productivityRating": 1,
+        "ruleData": "CvkBCAISQwpBCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBmVuZXJneRIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFdHJ1c3QSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGVudHISNBIyCGMaDSILCgl3ZWJEb21haW4iGwoZChdldC1ibG9nLnBhbnRoZW9uc2l0ZS5pbyoCAQISNxI1CGMaDSILCgl3ZWJEb21haW4iHgocChpldC1pbnNpZGVyLnBhbnRoZW9uc2l0ZS5pbyoCAQISIxIhCGMaDCIKCghrZXl3b3JkcyIPCg0KC2VuZXJneXRydXN0",
+        "children": []
+    },
+    {
+        "name": "EQEX",
+        "color": "#BBFF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CmcIAhJFCkMIARIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFZXF1YWwSIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCGV4Y2hhbmdlEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRlcWV4",
+        "children": []
+    },
+    {
+        "name": "FAWW",
+        "color": "#4DE2FFFF",
+        "productivityRating": 1,
+        "ruleData": "CoIBCAISYApeCAESHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGZvb2QSHRIbCGMaDCIKCghrZXl3b3JkcyIJCgcKBXdhdGVyEh0SGwhjGgwiCgoIa2V5d29yZHMiCQoHCgV3YXRjaBIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEZmF3dw==",
+        "children": []
+    },
+    {
+        "name": "FEAM",
+        "color": "#4DFF7DFF",
+        "productivityRating": 1,
+        "ruleData": "CmgIAhJGCkQIARIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHZmVlZGluZxIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHYW1lcmljYRIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEZmVhbQ==",
+        "children": []
+    },
+    {
+        "name": "FETX",
+        "color": "#4DFFCDFF",
+        "productivityRating": 1,
+        "ruleData": "CmYIAhJECkIIARIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHZmVlZGluZxIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFdGV4YXMSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGZldHg=",
+        "children": []
+    },
+    {
+        "name": "FHAO",
+        "color": "#6BFF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CqoBCAISRQpDCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBmZhY2luZxIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHaGlzdG9yeRIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEZmhhbxIlEiMIYxoMIgoKCGtleXdvcmRzIhEKDwoNZmFjaW5naGlzdG9yeRIaEhgIYxoMIgoKCGtleXdvcmRzIgYKBAoCZmg=",
+        "children": []
+    },
+    {
+        "name": "FRHO",
+        "color": "#4D92FFFF",
+        "productivityRating": 1,
+        "ruleData": "CmYIAhJECkIIARIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHZnJlZWRvbRIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFaG91c2USHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGZyaG8=",
+        "children": []
+    },
+    {
+        "name": "Housing Affordability Breakthrough",
+        "color": "#564DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CnYIAhJyCnAIARIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHaG91c2luZxIlEiMIYxoMIgoKCGtleXdvcmRzIhEKDwoNYWZmb3JkYWJpbGl0eRIkEiIIYxoMIgoKCGtleXdvcmRzIhAKDgoMYnJlYWt0aHJvdWdo",
+        "children": []
+    },
+    {
+        "name": "HSUS",
+        "color": "#A64DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CmcIAhJFCkMIARIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGaHVtYW5lEh8SHQhjGgwiCgoIa2V5d29yZHMiCwoJCgdzb2NpZXR5EhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRoc3Vz",
+        "children": []
+    },
+    {
+        "name": "ICAB",
+        "color": "#FF4DB9FF",
+        "productivityRating": 1,
+        "ruleData": "CoYBCAISQQo/CAESGxIZCGMaDCIKCghrZXl3b3JkcyIHCgUKA2FydBIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGYm9zdG9uEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRpY2FiEiESHwhjGgwiCgoIa2V5d29yZHMiDQoLCglpY2Fib3N0b24=",
+        "children": []
+    },
+    {
+        "name": "IMS Migration",
+        "color": "#F54DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CkgIAhJECkIIARIbEhkIYxoMIgoKCGtleXdvcmRzIgcKBQoDaW1zEiESHwhjGgwiCgoIa2V5d29yZHMiDQoLCgltaWdyYXRpb24=",
+        "children": []
+    },
+    {
+        "name": "Kaiser + Path",
+        "color": "#FF4D6AFF",
+        "productivityRating": 1,
+        "ruleData": "CkYIAhJCCkAIARIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGa2Fpc2VyEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRwYXRo",
+        "children": []
+    },
+    {
+        "name": "LATW",
+        "color": "#FF7F4DFF",
+        "productivityRating": 1,
+        "ruleData": "CmYIAhJECkIIARIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHdGhlYXRyZRIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFd29ya3MSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGxhdHc=",
+        "children": []
+    },
+    {
+        "name": "LTOG",
+        "color": "#FFCE4DFF",
+        "productivityRating": 1,
+        "ruleData": "CmYIAhJECkIIARIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIbGVhcm5pbmcSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGdpdmUSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBGx0b2c=",
+        "children": []
+    },
+    {
+        "name": "LVHN",
+        "color": "#E0FF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CkAIAhIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGbGVoaWdoEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRsdmhu",
+        "children": []
+    },
+    {
+        "name": "MACH",
+        "color": "#91FF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CkMIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEbWFjaBIhEh8IYxoMIgoKCGtleXdvcmRzIg0KCwoJbWFpbGNoaW1w",
+        "children": []
+    },
+    {
+        "name": "Metro",
+        "color": "#4DFF58FF",
+        "productivityRating": 1,
+        "ruleData": "CiEIAhIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFbWV0cm8=",
+        "children": []
+    },
+    {
+        "name": "NAKF",
+        "color": "#4DFFF7FF",
+        "productivityRating": 1,
+        "ruleData": "CmEIAhIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGa2lkbmV5EhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRuYWtmEh8SHQhjGgwiCgoIa2V5d29yZHMiCwoJCgdraWRuZXlz",
+        "children": []
+    },
+    {
+        "name": "NCYL",
+        "color": "#4DFFA7FF",
+        "productivityRating": 1,
+        "ruleData": "CoIBCAISYApeCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBmNlbnRlchIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFeW91dGgSGxIZCGMaDCIKCghrZXl3b3JkcyIHCgUKA2xhdxIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEbmN5bA==",
+        "children": []
+    },
+    {
+        "name": "OCEA",
+        "color": "#4DB8FFFF",
+        "productivityRating": 1,
+        "ruleData": "CmcIAhJFCkMIARIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFb2NlYW4SIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCG91dGNvbWVzEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRvY2Vh",
+        "children": []
+    },
+    {
+        "name": "OCVA",
+        "color": "#4D68FFFF",
+        "productivityRating": 1,
+        "ruleData": "CocBCAISZQpjCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBm9yZWdvbhIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFY29hc3QSIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCHZpc2l0b3JzEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRvY3Zh",
+        "children": []
+    },
+    {
+        "name": "ODFW",
+        "color": "#FFD24DFF",
+        "productivityRating": 1,
+        "ruleData": "CoYBCAISZApiCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBm9yZWdvbhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEZmlzaBIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoId2lsZGxpZmUSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBG9kZnc=",
+        "children": []
+    },
+    {
+        "name": "OTFO",
+        "color": "#4D96FFFF",
+        "productivityRating": 1,
+        "ruleData": "CmUIAhJDCkEIARIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEMTAwMBIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHZnJpZW5kcxIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEb3Rmbw==",
+        "children": []
+    },
+    {
+        "name": "PCAS",
+        "color": "#D04DFFFF",
+        "productivityRating": 1,
+        "ruleData": "Co4CCAISYwphCAESIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCHBvcnRsYW5kEh0SGwhjGgwiCgoIa2V5d29yZHMiCQoHCgVjbGVhbhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEc2FmZRJqCmgIARIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIcG9ydGxhbmQSIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCGJ1c2luZXNzEiASHghjGgwiCgoIa2V5d29yZHMiDAoKCghhbGxpYW5jZRIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEcGNhcxIbEhkIYxoMIgoKCGtleXdvcmRzIgcKBQoDcGJh",
+        "children": []
+    },
+    {
+        "name": "PCIP",
+        "color": "#804DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CmgIAhJGCkQIARIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHcGFjaWZpYxIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHY291bmNpbBIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEcGNpcA==",
+        "children": []
+    },
+    {
+        "name": "REIN",
+        "color": "#FF4DDFFF",
+        "productivityRating": 1,
+        "ruleData": "CokBCAISSwpJCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBnJlbGllZhIlEiMIYxoMIgoKCGtleXdvcmRzIhEKDwoNaW50ZXJuYXRpb25hbBIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEcmVpbhIaEhgIYxoMIgoKCGtleXdvcmRzIgYKBAoCcmk=",
+        "children": []
+    },
+    {
+        "name": "RENE",
+        "color": "#FF4D8FFF",
+        "productivityRating": 1,
+        "ruleData": "CkAIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEcmVuZRIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGcmV3aXJl",
+        "children": []
+    },
+    {
+        "name": "SHOS",
+        "color": "#FF594DFF",
+        "productivityRating": 1,
+        "ruleData": "CmcIAhJFCkMIARIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFc2hhcmUSIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCHN0cmVuZ3RoEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRzaG9z",
+        "children": []
+    },
+    {
+        "name": "SHPF",
+        "color": "#FFA94DFF",
+        "productivityRating": 1,
+        "ruleData": "CkYIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEc2hwZhIkEiIIYxoMIgoKCGtleXdvcmRzIhAKDgoMc2hhdHRlcnByb29m",
+        "children": []
+    },
+    {
+        "name": "SPLC",
+        "color": "#FFF84DFF",
+        "productivityRating": 1,
+        "ruleData": "CmkIAhJHCkUIARIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIc291dGhlcm4SHxIdCGMaDCIKCghrZXl3b3JkcyILCgkKB3BvdmVydHkSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBHNwbGM=",
+        "children": []
+    },
+    {
+        "name": "STTR",
+        "color": "#B6FF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CooBCAISQwpBCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBnN0cmVldBIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFdHJ1c3QSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBHN0dHISIxIhCGMaDCIKCghrZXl3b3JkcyIPCg0KC3N0cmVldHRydXN0",
+        "children": []
+    },
+    {
+        "name": "Teaching Tolerance",
+        "color": "#DCFF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CnAIAhJJCkcIARIgEh4IYxoMIgoKCGtleXdvcmRzIgwKCgoIdGVhY2hpbmcSIRIfCGMaDCIKCghrZXl3b3JkcyINCgsKCXRvbGVyYW5jZRIhEh8IYxoMIgoKCGtleXdvcmRzIg0KCwoJdG9sZXJhbmNl",
+        "children": []
+    },
+    {
+        "name": "TFCI",
+        "color": "#4D8EFFFF",
+        "productivityRating": 1,
+        "ruleData": "Co8BCAISbQprCAESHRIbCGMaDCIKCghrZXl3b3JkcyIJCgcKBXRydXN0EiQSIghjGgwiCgoIa2V5d29yZHMiEAoOCgxjb25zZXJ2YXRpb24SIhIgCGMaDCIKCghrZXl3b3JkcyIOCgwKCmlubm92YXRpb24SHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBHRmY2k=",
+        "children": []
+    },
+    {
+        "name": "TPI",
+        "color": "#4DFF81FF",
+        "productivityRating": 1,
+        "ruleData": "CokBCAISSgpICAESIhIgCGMaDCIKCghrZXl3b3JkcyIOCgwKCnRyYW5zaXRpb24SIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCHByb2plY3RzEhsSGQhjGgwiCgoIa2V5d29yZHMiBwoFCgN0cGkSHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBHRycHI=",
+        "children": []
+    },
+    {
+        "name": "TROR",
+        "color": "#4DFFD1FF",
+        "productivityRating": 1,
+        "ruleData": "CqMBCAISRApCCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBnRyYXZlbBIeEhwIYxoMIgoKCGtleXdvcmRzIgoKCAoGb3JlZ29uEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgR0cm9yEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRvdGlzEh0SGwhjGgwiCgoIa2V5d29yZHMiCQoHCgV0b2luZA==",
+        "children": []
+    },
+    {
+        "name": "TRPO",
+        "color": "#4DDEFFFF",
+        "productivityRating": 1,
+        "ruleData": "CssCCAISQQo/CAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBnRyYXZlbBIbEhkIYxoMIgoKCGtleXdvcmRzIgcKBQoDcGR4ElsKWQgBEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgRuZWFyEhoSGAhjGgwiCgoIa2V5d29yZHMiBgoECgJtZRIbEhkIYxoMIgoKCGtleXdvcmRzIgcKBQoDbm93EkYKRAgBEh4SHAhjGgwiCgoIa2V5d29yZHMiCgoICgZ0cmF2ZWwSIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCHBvcnRsYW5kEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgR0cnBvEiMSIQhjGgwiCgoIa2V5d29yZHMiDwoNCgtkcmFnb25zcGVsbBIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEdHBtcA==",
+        "children": []
+    },
+    {
+        "name": "UCHI",
+        "color": "#5A4DFFFF",
+        "productivityRating": 1,
+        "ruleData": "Co0BCAISSQpHCAESIhIgCGMaDCIKCghrZXl3b3JkcyIOCgwKCnVuaXZlcnNpdHkSHxIdCGMaDCIKCghrZXl3b3JkcyILCgkKB2NoaWNhZ28SHBIaCGMaDCIKCghrZXl3b3JkcyIICgYKBHVjaGkSIBIeCGMaDCIKCghrZXl3b3JkcyIMCgoKCHVjaGljYWdv",
+        "children": []
+    },
+    {
+        "name": "UFRM",
+        "color": "#4DFF4FFF",
+        "productivityRating": 1,
+        "ruleData": "Cs4CCAISQwpBCAESHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBmdpdmluZxIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFZm9ydW0SSQpHCAESJBIiCGMaDCIKCghrZXl3b3JkcyIQCg4KDHBoaWxhbnRocm9weRIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFZm9ydW0SIxIhCGMaDCIKCghrZXl3b3JkcyIPCg0KC2dpdmluZ2ZvcnVtEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgR1ZnJtEh4SHAhjGgwiCgoIa2V5d29yZHMiCgoICgZnZnpldXMSOBI2CGMaDSILCgl3ZWJEb21haW4iHwodChtpbnRlZ3JhdGlvbi5wYW50aGVvbnNpdGUuaW8qAgECEh0SGwhjGgwiCgoIa2V5d29yZHMiCQoHCgVmb3J1bQ==",
+        "children": []
+    },
+    {
+        "name": "ULPD",
+        "color": "#AA4DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CmUIAhJDCkEIARIdEhsIYxoMIgoKCGtleXdvcmRzIgkKBwoFdXJiYW4SHhIcCGMaDCIKCghrZXl3b3JkcyIKCggKBmxlYWd1ZRIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEdWxwZA==",
+        "children": []
+    },
+    {
+        "name": "WEAP",
+        "color": "#67FF4DFF",
+        "productivityRating": 1,
+        "ruleData": "CkEIAhIcEhoIYxoMIgoKCGtleXdvcmRzIggKBgoEd2VhcBIfEh0IYxoMIgoKCGtleXdvcmRzIgsKCQoHd2Vic3Rlcg==",
+        "children": []
+    },
+    {
+        "name": "WFWI",
+        "color": "#FF4DB5FF",
+        "productivityRating": 1,
+        "ruleData": "Cp4BCAISXwpdCAESHRIbCGMaDCIKCghrZXl3b3JkcyIJCgcKBXdvbWVuEhsSGQhjGgwiCgoIa2V5d29yZHMiBwoFCgNmb3ISHRIbCGMaDCIKCghrZXl3b3JkcyIJCgcKBXdvbWVuEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgR3ZndpEhsSGQhjGgwiCgoIa2V5d29yZHMiBwoFCgN3Znc=",
+        "children": []
+    },
+    {
+        "name": "WIRI",
+        "color": "#F94DFFFF",
+        "productivityRating": 1,
+        "ruleData": "CqoBCAISawppCAESIhIgCGMaDCIKCghrZXl3b3JkcyIOCgwKCndpbGxhbWV0dGUSHRIbCGMaDCIKCghrZXl3b3JkcyIJCgcKBXJpdmVyEiISIAhjGgwiCgoIa2V5d29yZHMiDgoMCgppbml0aWF0aXZlEhwSGghjGgwiCgoIa2V5d29yZHMiCAoGCgR3aXJpEhsSGQhjGgwiCgoIa2V5d29yZHMiBwoFCgN3cmk=",
+        "children": []
+    }
+]
