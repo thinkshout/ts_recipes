@@ -2,7 +2,7 @@
 
 ### Drupal 7
 
-Disable CSS/JS aggregation:
+Disable CSS/JS aggregation:  
 `drush vset preprocess_css 0 --yes`  
 `drush vset preprocess_js 0 --yes`  
 
@@ -11,7 +11,7 @@ Flush images:
 
 ### Drupal 8
 
-Disable CSS/JS aggregation:
+Disable CSS/JS aggregation:  
 `drush -y config-set system.performance css.preprocess 0`  
 `drush -y config-set system.performance js.preprocess 0`  
 
