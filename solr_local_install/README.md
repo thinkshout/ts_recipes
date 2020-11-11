@@ -1,6 +1,6 @@
 ## Installing SOLR
 
-Replace PROJECT with the name of your project. Solr core will live at http://localhost:8983/solr/PROJECT
+Replace PROJECT with the name of your project. Solr core will live at http://localhost:8983/solr/#/PROJECT
 
 ```
 brew tap smithmilner/homebrew-solr-legacy
