@@ -1,0 +1,5 @@
+name: 'Dependency Injection Examples'
+type: module
+description: 'Examples of DI in PHP and D8'
+core: 8.x
+package: 'Custom'

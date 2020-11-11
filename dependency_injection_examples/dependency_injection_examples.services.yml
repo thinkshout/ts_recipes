@@ -1,0 +1,10 @@
+services:
+  dependency_injection_examples.example_subscriber:
+    class: Drupal\dependency_injection_examples\EventSubscriber\ExampleSubscriber
+    tags:
+      - {name: event_subscriber}
+  dependency_injection_examples.example_subscriber_with_di:
+    class: Drupal\dependency_injection_examples\EventSubscriber\ExampleSubscriberWithDI
+    arguments: [ '@current_user' ]
+    tags:
+      - {name: event_subscriber}

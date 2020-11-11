@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dependency_injection_examples.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dependency_injection_examples_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dependency_injection_examples module.
+    case 'help.page.dependency_injection_examples':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Examples of DI in PHP and D8') . '</p>';
+      return $output;
+
+    default:
+  }
+}
