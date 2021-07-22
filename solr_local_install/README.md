@@ -5,6 +5,7 @@
 - Solr core will live at http://localhost:8983/solr/#/CORENAME
 
 ```
+brew install solr
 brew tap smithmilner/homebrew-solr-legacy
 brew install solr@5.5
 brew services start solr@5.5
