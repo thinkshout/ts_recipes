@@ -8,6 +8,7 @@
 brew install solr
 brew tap smithmilner/homebrew-solr-legacy
 brew install solr@5.5
+sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 brew services start solr@5.5
 
 mkdir -p /usr/local/opt/solr\@5.5/server/solr/CORENAME/conf
