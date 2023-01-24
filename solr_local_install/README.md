@@ -1,13 +1,5 @@
-## Installing SOLR
+# For new sites, visit
+https://library.thinkshoutlabs.com/articles/local-solr-setup-drupal-sites#solr-8
 
-```
-brew install solr
-```
-
-If you need solr 5.5 follow these instructions:
-```
-brew tap smithmilner/homebrew-solr-legacy
-brew install solr@5.5
-sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-brew services start solr@5.5
-```
+# For old sites
+Check the revision history for this page to see how to install solr 5
